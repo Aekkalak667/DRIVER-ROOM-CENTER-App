@@ -93,6 +93,32 @@
     </div>
 </div>
 
+<!-- 7. Mileage Before -->
+<div class="form-group">
+    <label>เลขไมล์ ก่อนเดินทาง (เผื่อลืมถ่ายเลขไมล์ปลายเดือนที่แล้ว) <span class="required">*</span></label>
+    <div class="input-icon-wrapper">
+        <i class="fa-solid fa-gauge input-icon" style="color: var(--text-muted);"></i>
+        <input type="number" class="form-control" placeholder="กรอกเลขไมล์ก่อนเดินทาง" required>
+    </div>
+</div>
+
+<!-- 8. Receipt Photo -->
+<div class="form-group">
+    <label>รูปถ่ายบิลน้ำมัน ในวัน 1 วัน ถึง 25 ของเดือน <span class="required">*</span></label>
+    <div class="glass-panel"
+        style="padding: 16px; border-radius: 12px; margin-top: 4px; text-align: center; border: 2px dashed var(--bg-hover);">
+        <i class="fa-solid fa-cloud-arrow-up" style="font-size: 2rem; color: var(--primary); margin-bottom: 8px;"></i>
+        <p style="font-size: 0.9rem; color: var(--text-main); margin-bottom: 4px;">แตะเพื่ออัปโหลดรูปภาพ</p>
+        <p style="font-size: 0.75rem; color: var(--text-muted);">รองรับไฟล์ JPG, PNG</p>
+        <input type="file" accept="image/*" style="display: none;" id="receiptUploadLcb" required>
+        <button type="button" class="btn-submit"
+            style="margin-top: 12px; padding: 8px 16px; font-size: 0.9rem; border-radius: 8px;"
+            onclick="document.getElementById('receiptUploadLcb').click()">
+            <i class="fa-solid fa-camera"></i> เลือกรูปภาพ
+        </button>
+    </div>
+</div>
+
 <button class="btn-submit ripple-btn" onclick="submitForm()">
     <span>อัพเดตข้อมูลระบบ</span>
     <i class="fa-solid fa-paper-plane"></i>
