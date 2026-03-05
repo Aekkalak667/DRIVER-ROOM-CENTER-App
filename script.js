@@ -165,8 +165,8 @@ function initTiltEffect() {
 
 // Premium Micro-interactions: Material Ripple Effect
 function setupRippleEffects() {
-    const createRipple = (event) => {
-        const button = event.currentTarget;
+    const createRipple = function (event) {
+        const button = event.currentTarget || this;
 
         // Remove existing ripples
         const existingRipple = button.querySelector('.ripple');
@@ -215,13 +215,13 @@ function setupRippleEffects() {
         const elements = document.querySelectorAll(selector);
         elements.forEach(el => el.addEventListener('mousedown', createRipple));
         // Add touchstart for mobile
-        elements.forEach(el => el.addEventListener('touchstart', (e) => {
+        elements.forEach(el => el.addEventListener('touchstart', function (e) {
             const touch = e.touches[0];
             const mouseEvent = new MouseEvent('mousedown', {
                 clientX: touch.clientX,
                 clientY: touch.clientY
             });
-            createRipple(mouseEvent);
+            createRipple.call(this, mouseEvent);
         }, { passive: true }));
     });
 }
