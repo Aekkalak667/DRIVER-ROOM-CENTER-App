@@ -25,6 +25,74 @@
     </div>
 </div>
 
+<!-- 4. Company -->
+<div class="form-group">
+    <label>บริษัทต้นสังกัด <span class="required">*</span></label>
+    <div class="glass-panel" style="padding: 16px; border-radius: 16px; margin-top: 4px;">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+            <label style="display: flex; align-items: center; gap: 12px; font-weight: 400; cursor: pointer;">
+                <div class="radio-cell" style="flex: 0 0 auto;">
+                    <input type="radio" name="company_lcb" value="MMTH" required>
+                </div>
+                <span>MMTH</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 12px; font-weight: 400; cursor: pointer;">
+                <div class="radio-cell" style="flex: 0 0 auto;">
+                    <input type="radio" name="company_lcb" value="SMS">
+                </div>
+                <span>SMS</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 12px; font-weight: 400; cursor: pointer;">
+                <div class="radio-cell" style="flex: 0 0 auto;">
+                    <input type="radio" name="company_lcb" value="SO">
+                </div>
+                <span>SO</span>
+            </label>
+        </div>
+    </div>
+</div>
+
+<!-- 5. Vehicle Type -->
+<div class="form-group">
+    <label>รถประจำตำแหน่ง หรือ สแปร์ <span class="required">*</span></label>
+    <div class="glass-panel" style="padding: 16px; border-radius: 16px; margin-top: 4px;">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+            <label style="display: flex; align-items: center; gap: 12px; font-weight: 400; cursor: pointer;">
+                <div class="radio-cell" style="flex: 0 0 auto;">
+                    <input type="radio" name="vehicle_type_lcb" value="รถประจำตำแหน่ง" required>
+                </div>
+                <span>รถประจำตำแหน่ง</span>
+            </label>
+            <label style="display: flex; align-items: center; gap: 12px; font-weight: 400; cursor: pointer;">
+                <div class="radio-cell" style="flex: 0 0 auto;">
+                    <input type="radio" name="vehicle_type_lcb" value="รถสแปร์">
+                </div>
+                <span>รถสแปร์</span>
+            </label>
+        </div>
+    </div>
+</div>
+
+<!-- 6. Car Model -->
+<div class="form-group">
+    <label>รุ่น / Car model <span class="required">*</span></label>
+    <div class="select-wrapper">
+        <i class="fa-solid fa-layer-group input-icon"></i>
+        <select class="form-control" required>
+            <option value="" disabled selected>เลือกรุ่นรถ</option>
+            <option>ATTRAGE</option>
+            <option>LANCER EX</option>
+            <option>MIRAGE</option>
+            <option>PAJERO</option>
+            <option>OUTLANDER</option>
+            <option>TRITON</option>
+            <option>XPANDER</option>
+            <option>XForce HEV</option>
+        </select>
+        <i class="fa-solid fa-chevron-down select-arrow"></i>
+    </div>
+</div>
+
 <button class="btn-submit ripple-btn" onclick="submitForm()">
     <span>อัพเดตข้อมูลระบบ</span>
     <i class="fa-solid fa-paper-plane"></i>
