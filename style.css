@@ -551,9 +551,10 @@ body {
     justify-content: center;
     text-decoration: none;
     color: var(--text-muted);
-    font-size: 0.75rem;
+    font-size: 0.70rem;
     gap: 6px;
     padding: 8px;
+    height: 48px;
     border-radius: 16px;
     z-index: 2;
     position: relative;
@@ -580,13 +581,13 @@ body {
 }
 
 .nav-item.active i {
-    transform: translateY(-6px);
+    transform: translateY(-8px);
 }
 
 .nav-item.active span {
     opacity: 1;
     transform: translateY(0);
-    bottom: 8px;
+    bottom: 6px;
 }
 
 /* Drawer / Overlay */
