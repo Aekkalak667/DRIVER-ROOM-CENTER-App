@@ -27,29 +27,48 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 let selectedMenuName = "";
+let selectedMenuId = "";
 
 // Handle menu card selection
 function selectMenu(element) {
-    // Save selected menu name for the drawer
+    // Save selected menu name and data-menu id
     const title = element.querySelector('h4').textContent;
+    const menuId = element.getAttribute('data-menu');
     selectedMenuName = title;
+    selectedMenuId = menuId;
 
     // Small delay to let ripple animation play before opening
     setTimeout(() => {
-        openForm(selectedMenuName);
+        openForm(selectedMenuName, selectedMenuId);
     }, 150);
 }
 
-// Open Drawer function
-function openForm(title) {
+// Open Drawer function - now loads content dynamically
+async function openForm(title, menuId) {
     const overlay = document.getElementById('formOverlay');
     const drawerTitle = document.getElementById('drawerTitle');
+    const formContent = document.getElementById('formContent');
 
     drawerTitle.textContent = title || "กรอกข้อมูล";
     overlay.classList.add('active');
 
     // Prevent background scrolling
     document.body.style.overflow = 'hidden';
+
+    // Show loading spinner
+    formContent.innerHTML = '<div style="text-align: center; padding: 40px 0; color: var(--text-muted);"><i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; margin-bottom: 12px;"></i><p>กำลังโหลด...</p></div>';
+
+    // Load page content dynamically
+    try {
+        const response = await fetch('pages/' + menuId + '.html');
+        if (response.ok) {
+            formContent.innerHTML = await response.text();
+        } else {
+            formContent.innerHTML = '<div style="text-align: center; padding: 40px 0; color: var(--text-muted);"><i class="fa-solid fa-circle-exclamation" style="font-size: 2rem; margin-bottom: 12px;"></i><p>ไม่พบหน้านี้</p></div>';
+        }
+    } catch (err) {
+        formContent.innerHTML = '<div style="text-align: center; padding: 40px 0; color: var(--text-muted);"><i class="fa-solid fa-triangle-exclamation" style="font-size: 2rem; margin-bottom: 12px;"></i><p>เกิดข้อผิดพลาดในการโหลด</p></div>';
+    }
 }
 
 // Close Drawer function
