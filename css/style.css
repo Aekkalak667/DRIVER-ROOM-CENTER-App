@@ -195,10 +195,16 @@ body {
     transition: all 0.2s ease;
 }
 
-/* Green border and checkmark when "ดี" is selected */
-.radio-cell input[type="radio"][value="ดี"]:checked {
+/* Green when "pass" (✓) is selected */
+.radio-cell input[type="radio"][value="pass"]:checked {
     border-color: #10b981;
     background-color: #10b981;
+}
+
+/* Red when "fail" (X) is selected */
+.radio-cell input[type="radio"][value="fail"]:checked {
+    border-color: #ef4444;
+    background-color: #ef4444;
 }
 
 /* Red border and cross when "ชำรุด" is selected */
