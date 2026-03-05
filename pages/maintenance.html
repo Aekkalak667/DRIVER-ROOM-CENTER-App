@@ -74,6 +74,52 @@
     </div>
 </div>
 
+<!-- 3. Company Owner -->
+<div class="form-group">
+    <label>บริษัทผู้ครอบครอง(เจ้าของรถ) <span class="required">*</span></label>
+    <div class="select-wrapper">
+        <i class="fa-solid fa-building input-icon"></i>
+        <select class="form-control" required>
+            <option value="" disabled selected>เลือกบริษัท</option>
+            <option>มิตซูบิชิ มอเตอร์ส</option>
+            <option>ไทยเร้นอะคาร์</option>
+            <option>กรุงไทยคาร์เร้น</option>
+            <option>บางกอกมิตซูบิชิ ยูเอฟเจ ลิส (ALD MSC)</option>
+            <option>กรุงไทย มิซูโฮ ลีสซิ่ง (ไอบีเจ)</option>
+            <option>ไทย เพรสทิจ เร้นท์ เอ คาร์</option>
+            <option>ไทยโอริกซ์ ลีสซิ่ง จำกัด</option>
+        </select>
+        <i class="fa-solid fa-chevron-down select-arrow"></i>
+    </div>
+</div>
+
+<!-- 4. Notification Date -->
+<div class="form-group">
+    <label>วันที่แจ้ง <span class="required">*</span></label>
+    <div class="input-icon-wrapper">
+        <input type="date" class="form-control" required style="padding-left: 16px;">
+        <i class="fa-regular fa-calendar input-icon" style="left: auto; right: 16px;"></i>
+    </div>
+</div>
+
+<!-- 5. Mileage -->
+<div class="form-group">
+    <label>เลขไมล์ <span class="required">*</span></label>
+    <div class="input-icon-wrapper">
+        <i class="fa-solid fa-gauge input-icon"></i>
+        <input type="number" class="form-control" placeholder="กรอกเลขไมล์" required>
+    </div>
+</div>
+
+<!-- 6. Reporter -->
+<div class="form-group">
+    <label>ผู้แจ้ง <span class="required">*</span></label>
+    <div class="input-icon-wrapper">
+        <i class="fa-solid fa-user input-icon"></i>
+        <input type="text" class="form-control" placeholder="กรอกชื่อผู้แจ้ง" required>
+    </div>
+</div>
+
 <button class="btn-submit ripple-btn" onclick="submitForm()">
     <span>อัพเดตข้อมูลระบบ</span>
     <i class="fa-solid fa-paper-plane"></i>
