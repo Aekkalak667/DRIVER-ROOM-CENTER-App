@@ -173,321 +173,37 @@
             </div>
             <div class="drawer-body">
                 <div class="mockup-form">
-                    <!-- Date Input -->
                     <div class="form-group">
-                        <label>วันที่บันทึกระบบ <span class="required">*</span></label>
+                        <label>วันที่บันทึกระบบ</label>
                         <div class="input-icon-wrapper">
                             <i class="fa-regular fa-calendar input-icon"></i>
                             <input type="text" class="form-control" readonly id="mockDate" value="วันนี้">
                         </div>
                     </div>
-
-                    <!-- ID Input -->
                     <div class="form-group">
-                        <label>รหัสพนักงาน <span class="required">*</span></label>
-                        <div class="input-icon-wrapper">
-                            <i class="fa-solid fa-id-badge input-icon"></i>
-                            <input type="text" class="form-control" placeholder="ระบุรหัสประจำตัวพนักงาน">
-                        </div>
-                    </div>
-
-                    <!-- Department Select (Placeholder for now) -->
-                    <div class="form-group">
-                        <label>สังกัด / หน่วยงาน <span class="required">*</span></label>
-                        <div class="select-wrapper">
-                            <i class="fa-solid fa-building input-icon"></i>
-                            <select class="form-control">
-                                <option value="" disabled selected>-- เลือก --</option>
-                                <option>A</option>
-                                <option>B</option>
-                                <option>C</option>
-                            </select>
-                            <i class="fa-solid fa-chevron-down select-arrow"></i>
-                        </div>
-                    </div>
-
-                    <!-- Vehicle Select -->
-                    <div class="form-group">
-                        <label>ป้ายทะเบียนรถ <span class="required">*</span></label>
+                        <label>ป้ายทะเบียนรถ</label>
                         <div class="select-wrapper">
                             <i class="fa-solid fa-car input-icon"></i>
                             <select class="form-control">
-                                <option value="" disabled selected>เลือกทะเบียนรถ</option>
+                                <option value="" disabled selected>เลือกทะเบียนรถของคุณ</option>
                                 <option>1กข 1234 กรุงเทพมหานคร</option>
                                 <option>2ขค 5678 กรุงเทพมหานคร</option>
                             </select>
                             <i class="fa-solid fa-chevron-down select-arrow"></i>
                         </div>
                     </div>
-
-                    <!-- Mileage Input -->
-                    <div class="form-group">
-                        <label>เลขไมล์ก่อนใช้งาน <span class="required">*</span></label>
-                        <div class="input-icon-wrapper">
-                            <i class="fa-solid fa-gauge-high input-icon"></i>
-                            <input type="number" class="form-control" placeholder="ตัวอย่าง: 111111"
-                                inputmode="numeric">
-                        </div>
+                    <div class="form-placeholder glass-panel">
+                        <div class="blob-anim"></div>
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <p>พื้นที่สำหรับสร้างฟอร์มกรอกข้อมูล<br>โปรดรอการอัปเดตแบบละเอียดในขั้นตอนถัดไป</p>
                     </div>
-
-                    <!-- Fuel Level -->
-                    <div class="form-group">
-                        <label>ระดับน้ำมันเชื้อเพลิง <span class="required">*</span></label>
-                        <div class="select-wrapper">
-                            <i class="fa-solid fa-gas-pump input-icon"></i>
-                            <select class="form-control">
-                                <option value="" disabled selected>เลือกระดับน้ำมัน</option>
-                                <option>1/4 (ต่ำ)</option>
-                                <option>1/2 (ครึ่งถัง)</option>
-                                <option>3/4 (เกือบเต็ม)</option>
-                                <option>4/4 (เต็มถัง)</option>
-                            </select>
-                            <i class="fa-solid fa-chevron-down select-arrow"></i>
-                        </div>
-                    </div>
-
-                    <!-- Inspection Grids -->
-
-                    <!-- Exterior Grid -->
-                    <div class="form-group inspection-grid">
-                        <label>การตรวจสภาพรอยรถรอบนอก <span class="required">*</span></label>
-                        <div class="grid-table">
-                            <div class="grid-row grid-header">
-                                <div class="grid-cell item-name">รายการ</div>
-                                <div class="grid-cell radio-cell">ดี</div>
-                                <div class="grid-cell radio-cell">ชำรุด</div>
-                            </div>
-                            <div class="grid-row">
-                                <div class="grid-cell item-name">กันชน / กระจังหน้า</div>
-                                <div class="grid-cell radio-cell"><input type="radio" name="ext1" value="ดี"></div>
-                                <div class="grid-cell radio-cell"><input type="radio" name="ext1" value="ชำรุด"></div>
-                            </div>
-                            <div class="grid-row">
-                                <div class="grid-cell item-name">ฝากระโปรงหน้า / กระจกบังลมหน้า</div>
-                                <div class="grid-cell radio-cell"><input type="radio" name="ext2" value="ดี"></div>
-                                <div class="grid-cell radio-cell"><input type="radio" name="ext2" value="ชำรุด"></div>
-                            </div>
-                            <div class="grid-row">
-                                <div class="grid-cell item-name">ไฟส่องสว่างหน้า / ไฟเลี้ยว</div>
-                                <div class="grid-cell radio-cell"><input type="radio" name="ext3" value="ดี"></div>
-                                <div class="grid-cell radio-cell"><input type="radio" name="ext3" value="ชำรุด"></div>
-                            </div>
-                            <div class="grid-row">
-                                <div class="grid-cell item-name">ล้อ / ยาง / น็อตล้อหน้าและหลังซ้าย-ขวา</div>
-                                <div class="grid-cell radio-cell"><input type="radio" name="ext4" value="ดี"></div>
-                                <div class="grid-cell radio-cell"><input type="radio" name="ext4" value="ชำรุด"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell item-name">รอบข้างซ้าย / ขวา</div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="ext5" value="ดี"></div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="ext5" value="ชำรุด"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell item-name">กระจกมองข้างซ้าย / ขวา</div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="ext6" value="ดี"></div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="ext6" value="ชำรุด"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell item-name">ไฟท้าย / ไฟเลี้ยว / ไฟเบรค</div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="ext7" value="ดี"></div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="ext7" value="ชำรุด"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell item-name">กันชนหลัง / ฝากระโปรงท้าย</div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="ext8" value="ดี"></div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="ext8" value="ชำรุด"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell item-name">หลังคา</div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="ext9" value="ดี"></div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="ext9" value="ชำรุด"></div>
-                    </div>
+                    <button class="btn-submit ripple-btn" onclick="submitForm()">
+                        <span>อัพเดตข้อมูลระบบ</span>
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
                 </div>
             </div>
-
-            <!-- Note exterior -->
-            <div class="form-group">
-                <label>ระบุสาเหตุ / จุดภาพที่เสียหาย หรือชำรุด</label>
-                <textarea class="form-control" rows="2" placeholder="คำตอบของคุณ"></textarea>
-            </div>
-
-            <!-- Interior Grid -->
-            <div class="form-group inspection-grid">
-                <label>การตรวจความสะอาดภายในรถ และอุปกรณ์ประจำรถ <span class="required">*</span></label>
-                <div class="grid-table">
-                    <div class="grid-row grid-header">
-                        <div class="grid-cell item-name">รายการ</div>
-                        <div class="grid-cell radio-cell">ดี</div>
-                        <div class="grid-cell radio-cell">ชำรุด</div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell item-name">เบาะ / กล่องคอนโซลกลาง / พื้นรถ / พรม</div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="int1" value="ดี"></div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="int1" value="ชำรุด"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell item-name">แผงประตู / คอนโซลหน้า</div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="int2" value="ดี"></div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="int2" value="ชำรุด"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell item-name">เพดาน / ไฟส่องสว่างในห้องโดยสาร</div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="int3" value="ดี"></div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="int3" value="ชำรุด"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell item-name">เครื่องปรับอากาศ / วิทยุ</div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="int4" value="ดี"></div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="int4" value="ชำรุด"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell item-name">อุปกรณ์ประจำรถ (วิทยุสื่อสาร, GPS, บัตรทางด่วน, ฯลฯ)</div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="int5" value="ดี"></div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="int5" value="ชำรุด"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell item-name">ยางอะไหล่ / แม่แรง / เครื่องมือประจำรถ</div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="int6" value="ดี"></div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="int6" value="ชำรุด"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Note interior -->
-            <div class="form-group">
-                <label>ระบุสาเหตุ / จุดภาพที่เสียหาย หรือชำรุด</label>
-                <textarea class="form-control" rows="2" placeholder="คำตอบของคุณ"></textarea>
-            </div>
-
-            <!-- Engine Grid -->
-            <div class="form-group inspection-grid">
-                <label>การตรวจสภาพเครื่องยนต์ และอุปกรณ์ต่างๆ <span class="required">*</span></label>
-                <div class="grid-table">
-                    <div class="grid-row grid-header">
-                        <div class="grid-cell item-name">รายการ</div>
-                        <div class="grid-cell radio-cell">ดี</div>
-                        <div class="grid-cell radio-cell">ชำรุด</div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell item-name">ระดับน้ำมันหล่อลื่นเครื่องยนต์</div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="eng1" value="ดี"></div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="eng1" value="ชำรุด"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell item-name">ระดับน้ำมันเบรค / น้ำมันคลัทช์</div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="eng2" value="ดี"></div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="eng2" value="ชำรุด"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell item-name">ระดับน้ำมันพวงมาลัยพาวเวอร์</div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="eng3" value="ดี"></div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="eng3" value="ชำรุด"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell item-name">ระดับน้ำหล่อเย็น / น้ำฉีดกระจก</div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="eng4" value="ดี"></div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="eng4" value="ชำรุด"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell item-name">ระดับน้ำกลั่นแบตเตอรี่ / ขั้วแบตเตอรี่</div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="eng5" value="ดี"></div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="eng5" value="ชำรุด"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell item-name">สายพานเครื่องยนต์ / สายพานแอร์</div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="eng6" value="ดี"></div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="eng6" value="ชำรุด"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell item-name">รอยรั่วซึมของของเหลวบริเวณเครื่องยนต์</div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="eng7" value="ดี"></div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="eng7" value="ชำรุด"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell item-name">เสียงดังผิดปกติของเครื่องยนต์</div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="eng8" value="ดี"></div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="eng8" value="ชำรุด"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell item-name">การทำงานของมาตรวัด / ไฟเตือนหน้าปัทม์</div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="eng9" value="ดี"></div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="eng9" value="ชำรุด"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell item-name">การทำงานของเบรคมือ / เบรคเท้า</div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="eng10" value="ดี"></div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="eng10" value="ชำรุด"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell item-name">การทำงานของพวงมาลัย</div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="eng11" value="ดี"></div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="eng11" value="ชำรุด"></div>
-                    </div>
-                    <div class="grid-row">
-                        <div class="grid-cell item-name">การทำงานของแตร</div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="eng12" value="ดี"></div>
-                        <div class="grid-cell radio-cell"><input type="radio" name="eng12" value="ชำรุด"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Note engine -->
-            <div class="form-group">
-                <label>ระบุสาเหตุ / จุดภาพที่เสียหาย หรือชำรุด</label>
-                <textarea class="form-control" rows="2" placeholder="คำตอบของคุณ"></textarea>
-            </div>
-
-            <!-- Cleanliness section -->
-            <div class="form-group">
-                <label>พนักงานขับรถแต่งกายสะอาด สุภาพ เรียบร้อย <span class="required">*</span></label>
-                <div class="select-wrapper">
-                    <i class="fa-solid fa-shirt input-icon"></i>
-                    <select class="form-control">
-                        <option value="" disabled selected>-- เลือก --</option>
-                        <option>สะอาดเรียบร้อย</option>
-                        <option>ไม่เรียบร้อย</option>
-                    </select>
-                    <i class="fa-solid fa-chevron-down select-arrow"></i>
-                </div>
-            </div>
-
-            <!-- Readiness section -->
-            <div class="form-group">
-                <label>พนักงานขับรถเตรียมความพร้อมของร่างกาย <span class="required">*</span></label>
-                <div class="select-wrapper">
-                    <i class="fa-solid fa-bed input-icon"></i>
-                    <select class="form-control">
-                        <option value="" disabled selected>-- เลือก --</option>
-                        <option>พร้อมในการปฏิบัติงาน</option>
-                        <option>ไม่พร้อมในการปฏิบัติงาน</option>
-                    </select>
-                    <i class="fa-solid fa-chevron-down select-arrow"></i>
-                </div>
-            </div>
-
-            <!-- Documents section -->
-            <div class="form-group">
-                <label>เอกสารประจำรถ (ตารางวิ่งรถ, สมุดบันทึกการใช้รถ) <span class="required">*</span></label>
-                <div class="select-wrapper">
-                    <i class="fa-solid fa-file-lines input-icon"></i>
-                    <select class="form-control">
-                        <option value="" disabled selected>-- เลือก --</option>
-                        <option>ครบถ้วน</option>
-                        <option>ไม่ครบถ้วน</option>
-                    </select>
-                    <i class="fa-solid fa-chevron-down select-arrow"></i>
-                </div>
-            </div>
-
-            <button class="btn-submit ripple-btn" onclick="submitForm()">
-                <span>อัพเดตข้อมูลระบบ</span>
-                <i class="fa-solid fa-paper-plane"></i>
-            </button>
         </div>
-    </div>
-    </div>
     </div>
 
     <!-- Custom Cursor (optional touch of modern web) -->
