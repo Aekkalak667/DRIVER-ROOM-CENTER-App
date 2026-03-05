@@ -222,6 +222,51 @@
                         </div>
                     </div>
 
+                    <!-- 4. License Plate -->
+                    <div class="form-group">
+                        <label>ทะเบียนรถ <span class="required">*</span></label>
+                        <div class="input-icon-wrapper">
+                            <i class="fa-solid fa-car input-icon"></i>
+                            <input type="text" class="form-control" placeholder="Your answer" required>
+                        </div>
+                    </div>
+
+                    <!-- 5. Car Model -->
+                    <div class="form-group">
+                        <label>รุ่น / Car model <span class="required">*</span></label>
+                        <div class="select-wrapper">
+                            <i class="fa-solid fa-layer-group input-icon"></i>
+                            <select class="form-control" required>
+                                <option value="" disabled selected>Choose</option>
+                                <option>Xpander</option>
+                                <option>Pajero Sport</option>
+                                <option>Triton</option>
+                                <option>Mirage</option>
+                                <option>Attrage</option>
+                                <option>Outlander PHEV</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down select-arrow"></i>
+                        </div>
+                    </div>
+
+                    <!-- 6. Substitute Car -->
+                    <div class="form-group">
+                        <label>กรณีใช้รถส่วนกลาง/รถสแปร์(ทะเบียนรถ)</label>
+                        <div class="input-icon-wrapper">
+                            <i class="fa-solid fa-car-side input-icon" style="color: var(--text-muted);"></i>
+                            <input type="text" class="form-control" placeholder="Your answer">
+                        </div>
+                    </div>
+
+                    <!-- 7. Date -->
+                    <div class="form-group">
+                        <label>วันที่ <span class="required">*</span></label>
+                        <div class="input-icon-wrapper">
+                            <input type="date" class="form-control" required style="padding-left: 16px;">
+                            <i class="fa-regular fa-calendar input-icon" style="left: auto; right: 16px;"></i>
+                        </div>
+                    </div>
+
                     <button class="btn-submit ripple-btn" onclick="submitForm()">
                         <span>อัพเดตข้อมูลระบบ</span>
                         <i class="fa-solid fa-paper-plane"></i>

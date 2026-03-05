@@ -846,6 +846,19 @@ body {
     appearance: none;
 }
 
+input[type="date"].form-control {
+    padding-right: 48px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    opacity: 0;
+    position: absolute;
+    right: 16px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+}
+
 .form-control:focus {
     outline: none;
     border-color: var(--primary);
