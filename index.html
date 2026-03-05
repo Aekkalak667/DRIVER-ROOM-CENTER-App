@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Driver Room Center App</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/style.css">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -43,8 +43,15 @@
             </button>
         </header>
 
+        <!-- Main Banner Ad/Gif -->
+        <div class="main-banner-container fade-in-up"
+            style="margin: 0 var(--spacing) 20px; border-radius: var(--radius-xl); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+            <img src="images/banner.gif" alt="Center Banner"
+                style="width: 100%; height: auto; display: block; object-fit: cover;">
+        </div>
+
         <!-- Banner -->
-        <section class="banner glass-panel tilt-card fade-in-up">
+        <section class="banner glass-panel tilt-card fade-in-up" style="animation-delay: 0.1s;">
             <div class="banner-bg-anim"></div>
             <div class="banner-content">
                 <div class="banner-tag">ระบบจัดการข้อมูลพนักงานขับรถ</div>
@@ -202,7 +209,7 @@
     <!-- Custom Cursor (optional touch of modern web) -->
     <div class="cursor-glow"></div>
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 
 </html>
