@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Room Center App</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header scale-in">
+            <div class="user-info">
+                <div class="avatar-container">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80"
+                        alt="User Profile" class="profile-pic">
+                    <span class="status-dot"></span>
+                </div>
+                <div class="greeting">
+                    <p class="greeting-text">ยินดีต้อนรับ,</p>
+                    <h2 class="user-name">คุณสมชาย ใจดี</h2>
+                </div>
+            </div>
+            <button class="notification-btn ripple-btn">
+                <i class="fa-regular fa-bell"></i>
+                <span class="badge pulse-anim">2</span>
+            </button>
+        </header>
+
+        <!-- Banner -->
+        <section class="banner glass-panel tilt-card fade-in-up">
+            <div class="banner-bg-anim"></div>
+            <div class="banner-content">
+                <div class="banner-tag">ระบบจัดการข้อมูลพนักงานขับรถ</div>
+                <h1>DRIVER ROOM CENTER</h1>
+                <div class="date-chip">
+                    <i class="fa-regular fa-calendar-days"></i>
+                    <span id="currentDate">--/--/----</span>
+                </div>
+            </div>
+            <div class="banner-icon">
+                <i class="fa-solid fa-car"></i>
+            </div>
+        </section>
+
+        <!-- Main Menu -->
+        <main class="menu-section">
+            <div class="section-header fade-in-up" style="animation-delay: 0.1s;">
+                <h3 class="section-title">เมนูหลัก <span class="badge-new">ใหม่</span></h3>
+                <p class="section-desc">เลือกรายการที่คุณต้องการทำรายการ</p>
+            </div>
+
+            <div class="menu-grid">
+                <!-- Menu 1 -->
+                <button class="menu-card glass-panel ripple-card fade-in-up" data-menu="daily-check"
+                    style="animation-delay: 0.2s;" onclick="selectMenu(this)">
+                    <div class="icon-wrapper glass-icon" style="--card-color: #3b82f6;">
+                        <i class="fa-solid fa-clipboard-check"></i>
+                    </div>
+                    <div class="menu-text">
+                        <h4>เช็ครถประจำวัน</h4>
+                        <p>บันทึกการตรวจสภาพก่อนใช้งาน</p>
+                    </div>
+                    <div class="arrow-icon"><i class="fa-solid fa-arrow-right"></i></div>
+                </button>
+
+                <!-- Menu 2 -->
+                <button class="menu-card glass-panel ripple-card fade-in-up" data-menu="maintenance"
+                    style="animation-delay: 0.3s;" onclick="selectMenu(this)">
+                    <div class="icon-wrapper glass-icon" style="--card-color: #f59e0b;">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                    </div>
+                    <div class="menu-text">
+                        <h4>แจ้งเช็คระยะ</h4>
+                        <p>ตรวจสอบและแจ้งเตือนเข้าศูนย์</p>
+                    </div>
+                    <div class="arrow-icon"><i class="fa-solid fa-arrow-right"></i></div>
+                </button>
+
+                <!-- Menu 3 -->
+                <button class="menu-card glass-panel ripple-card fade-in-up" data-menu="mileage-lcb"
+                    style="animation-delay: 0.4s;" onclick="selectMenu(this)">
+                    <div class="icon-wrapper glass-icon" style="--card-color: #10b981;">
+                        <i class="fa-solid fa-gauge-high"></i>
+                    </div>
+                    <div class="menu-text">
+                        <h4>เลขไมล์ (LCB)</h4>
+                        <p>บันทึกเลขไมล์ทุกวันที่ 25</p>
+                    </div>
+                    <div class="arrow-icon"><i class="fa-solid fa-arrow-right"></i></div>
+                </button>
+
+                <!-- Menu 4 -->
+                <button class="menu-card glass-panel ripple-card fade-in-up" data-menu="mileage-fyi"
+                    style="animation-delay: 0.5s;" onclick="selectMenu(this)">
+                    <div class="icon-wrapper glass-icon" style="--card-color: #8b5cf6;">
+                        <i class="fa-solid fa-road"></i>
+                    </div>
+                    <div class="menu-text">
+                        <h4>เลขไมล์ (FYI & EA)</h4>
+                        <p>บันทึกเลขไมล์ทุกวันที่ 25</p>
+                    </div>
+                    <div class="arrow-icon"><i class="fa-solid fa-arrow-right"></i></div>
+                </button>
+
+                <!-- Menu 5 -->
+                <button class="menu-card glass-panel ripple-card fade-in-up" data-menu="ev-charge"
+                    style="animation-delay: 0.6s;" onclick="selectMenu(this)">
+                    <div class="icon-wrapper glass-icon" style="--card-color: #06b6d4;">
+                        <i class="fa-solid fa-charging-station"></i>
+                    </div>
+                    <div class="menu-text">
+                        <h4>บริการสถานีชาร์จไฟ</h4>
+                        <p>บันทึกข้อมูลการชาร์จรถ EV</p>
+                    </div>
+                    <div class="arrow-icon"><i class="fa-solid fa-arrow-right"></i></div>
+                </button>
+            </div>
+        </main>
+
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav glass-panel slide-up">
+            <div class="active-indicator"></div>
+            <a href="#" class="nav-item active ripple-icon" onclick="switchNav(event, this)">
+                <i class="fa-solid fa-border-all"></i>
+                <span>หน้าหลัก</span>
+            </a>
+            <a href="#" class="nav-item ripple-icon" onclick="switchNav(event, this)">
+                <i class="fa-solid fa-clock-rotate-left"></i>
+                <span>ประวัติ</span>
+            </a>
+            <a href="#" class="nav-item ripple-icon" onclick="switchNav(event, this)">
+                <i class="fa-solid fa-user-astronaut"></i>
+                <span>โปรไฟล์</span>
+            </a>
+        </nav>
+    </div>
+
+    <!-- Overlay Form -->
+    <div class="overlay" id="formOverlay">
+        <div class="form-drawer">
+            <div class="drawer-header">
+                <div class="drawer-title-wrapper">
+                    <div class="drawer-icon"><i class="fa-solid fa-pen-to-square"></i></div>
+                    <h3 id="drawerTitle">หัวข้อเมนู</h3>
+                </div>
+                <button class="close-btn ripple-btn" onclick="closeForm()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="drawer-body">
+                <div class="mockup-form">
+                    <div class="form-group">
+                        <label>วันที่บันทึกระบบ</label>
+                        <div class="input-icon-wrapper">
+                            <i class="fa-regular fa-calendar input-icon"></i>
+                            <input type="text" class="form-control" readonly id="mockDate" value="วันนี้">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>ป้ายทะเบียนรถ</label>
+                        <div class="select-wrapper">
+                            <i class="fa-solid fa-car input-icon"></i>
+                            <select class="form-control">
+                                <option value="" disabled selected>เลือกทะเบียนรถของคุณ</option>
+                                <option>1กข 1234 กรุงเทพมหานคร</option>
+                                <option>2ขค 5678 กรุงเทพมหานคร</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down select-arrow"></i>
+                        </div>
+                    </div>
+                    <div class="form-placeholder glass-panel">
+                        <div class="blob-anim"></div>
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <p>พื้นที่สำหรับสร้างฟอร์มกรอกข้อมูล<br>ออกแบบมาเพื่อความง่ายและรวดเร็ว</p>
+                    </div>
+                    <button class="btn-submit ripple-btn" onclick="submitForm()">
+                        <span>อัพเดตข้อมูลระบบ</span>
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor (optional touch of modern web) -->
+    <div class="cursor-glow"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
