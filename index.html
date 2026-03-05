@@ -173,30 +173,119 @@
             </div>
             <div class="drawer-body">
                 <div class="mockup-form">
+                    <!-- Date Input -->
                     <div class="form-group">
-                        <label>วันที่บันทึกระบบ</label>
+                        <label>วันที่บันทึกระบบ <span class="required">*</span></label>
                         <div class="input-icon-wrapper">
                             <i class="fa-regular fa-calendar input-icon"></i>
                             <input type="text" class="form-control" readonly id="mockDate" value="วันนี้">
                         </div>
                     </div>
+
+                    <!-- ID Input -->
                     <div class="form-group">
-                        <label>ป้ายทะเบียนรถ</label>
+                        <label>รหัสพนักงาน <span class="required">*</span></label>
+                        <div class="input-icon-wrapper">
+                            <i class="fa-solid fa-id-badge input-icon"></i>
+                            <input type="text" class="form-control" placeholder="ระบุรหัสประจำตัวพนักงาน">
+                        </div>
+                    </div>
+
+                    <!-- Department Select (Placeholder for now) -->
+                    <div class="form-group">
+                        <label>สังกัด / หน่วยงาน <span class="required">*</span></label>
+                        <div class="select-wrapper">
+                            <i class="fa-solid fa-building input-icon"></i>
+                            <select class="form-control">
+                                <option value="" disabled selected>-- เลือก --</option>
+                                <option>A</option>
+                                <option>B</option>
+                                <option>C</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down select-arrow"></i>
+                        </div>
+                    </div>
+
+                    <!-- Vehicle Select -->
+                    <div class="form-group">
+                        <label>ป้ายทะเบียนรถ <span class="required">*</span></label>
                         <div class="select-wrapper">
                             <i class="fa-solid fa-car input-icon"></i>
                             <select class="form-control">
-                                <option value="" disabled selected>เลือกทะเบียนรถของคุณ</option>
+                                <option value="" disabled selected>เลือกทะเบียนรถ</option>
                                 <option>1กข 1234 กรุงเทพมหานคร</option>
                                 <option>2ขค 5678 กรุงเทพมหานคร</option>
                             </select>
                             <i class="fa-solid fa-chevron-down select-arrow"></i>
                         </div>
                     </div>
-                    <div class="form-placeholder glass-panel">
-                        <div class="blob-anim"></div>
-                        <i class="fa-solid fa-wand-magic-sparkles"></i>
-                        <p>พื้นที่สำหรับสร้างฟอร์มกรอกข้อมูล<br>ออกแบบมาเพื่อความง่ายและรวดเร็ว</p>
+
+                    <!-- Mileage Input -->
+                    <div class="form-group">
+                        <label>เลขไมล์ก่อนใช้งาน <span class="required">*</span></label>
+                        <div class="input-icon-wrapper">
+                            <i class="fa-solid fa-gauge-high input-icon"></i>
+                            <input type="number" class="form-control" placeholder="ตัวอย่าง: 111111"
+                                inputmode="numeric">
+                        </div>
                     </div>
+
+                    <!-- Fuel Level -->
+                    <div class="form-group">
+                        <label>ระดับน้ำมันเชื้อเพลิง <span class="required">*</span></label>
+                        <div class="select-wrapper">
+                            <i class="fa-solid fa-gas-pump input-icon"></i>
+                            <select class="form-control">
+                                <option value="" disabled selected>เลือกระดับน้ำมัน</option>
+                                <option>1/4 (ต่ำ)</option>
+                                <option>1/2 (ครึ่งถัง)</option>
+                                <option>3/4 (เกือบเต็ม)</option>
+                                <option>4/4 (เต็มถัง)</option>
+                            </select>
+                            <i class="fa-solid fa-chevron-down select-arrow"></i>
+                        </div>
+                    </div>
+
+                    <!-- Inspection Grids -->
+
+                    <!-- Exterior Grid -->
+                    <div class="form-group inspection-grid">
+                        <label>การตรวจสภาพรอยรถรอบนอก <span class="required">*</span></label>
+                        <div class="grid-table">
+                            <div class="grid-row grid-header">
+                                <div class="grid-cell item-name">รายการ</div>
+                                <div class="grid-cell radio-cell">ดี</div>
+                                <div class="grid-cell radio-cell">ชำรุด</div>
+                            </div>
+                            <div class="grid-row">
+                                <div class="grid-cell item-name">กันชน / กระจังหน้า</div>
+                                <div class="grid-cell radio-cell"><input type="radio" name="ext1" value="ดี"></div>
+                                <div class="grid-cell radio-cell"><input type="radio" name="ext1" value="ชำรุด"></div>
+                            </div>
+                            <div class="grid-row">
+                                <div class="grid-cell item-name">ฝากระโปรงหน้า / กระจกบังลมหน้า</div>
+                                <div class="grid-cell radio-cell"><input type="radio" name="ext2" value="ดี"></div>
+                                <div class="grid-cell radio-cell"><input type="radio" name="ext2" value="ชำรุด"></div>
+                            </div>
+                            <div class="grid-row">
+                                <div class="grid-cell item-name">ไฟส่องสว่างหน้า / ไฟเลี้ยว</div>
+                                <div class="grid-cell radio-cell"><input type="radio" name="ext3" value="ดี"></div>
+                                <div class="grid-cell radio-cell"><input type="radio" name="ext3" value="ชำรุด"></div>
+                            </div>
+                            <div class="grid-row">
+                                <div class="grid-cell item-name">ล้อ / ยาง / น็อตล้อหน้าและหลังซ้าย-ขวา</div>
+                                <div class="grid-cell radio-cell"><input type="radio" name="ext4" value="ดี"></div>
+                                <div class="grid-cell radio-cell"><input type="radio" name="ext4" value="ชำรุด"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Note exterior -->
+                    <div class="form-group">
+                        <label>ระบุสาเหตุ / จุดภาพที่เสียหาย หรือชำรุด</label>
+                        <textarea class="form-control" rows="2" placeholder="คำตอบของคุณ"></textarea>
+                    </div>
+
                     <button class="btn-submit ripple-btn" onclick="submitForm()">
                         <span>อัพเดตข้อมูลระบบ</span>
                         <i class="fa-solid fa-paper-plane"></i>
