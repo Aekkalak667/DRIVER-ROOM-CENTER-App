@@ -282,3 +282,25 @@ function calculateEvDuration() {
         durationDisplay.value = '';
     }
 }
+
+// EV Charge: Show/hide station details based on dropdown selection
+function showStationDetails(stationValue) {
+    // Hide all station detail sections
+    const allStations = document.querySelectorAll('[id^="station_"]');
+    allStations.forEach(el => {
+        el.style.display = 'none';
+    });
+
+    // Clear any previously selected radio buttons
+    const radios = document.querySelectorAll('input[name="ev_station_type"]');
+    radios.forEach(r => r.checked = false);
+
+    // Show the selected station details
+    if (stationValue) {
+        const target = document.getElementById('station_' + stationValue);
+        if (target) {
+            target.style.display = 'block';
+            target.style.animation = 'fadeInUp 0.4s ease both';
+        }
+    }
+}
