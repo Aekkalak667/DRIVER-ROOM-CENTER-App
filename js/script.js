@@ -324,3 +324,23 @@ function closeProfile() {
         document.body.style.overflow = '';
     }
 }
+
+// Notification Page: Open with page-swap animation
+function openNotification() {
+    const overlay = document.getElementById('notificationOverlay');
+    if (overlay) {
+        document.body.classList.add('profile-open');
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+// Notification Page: Close with page-swap animation
+function closeNotification() {
+    const overlay = document.getElementById('notificationOverlay');
+    if (overlay && overlay.classList.contains('active')) {
+        document.body.classList.remove('profile-open');
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
