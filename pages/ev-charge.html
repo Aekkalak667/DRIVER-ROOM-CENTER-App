@@ -1,5 +1,40 @@
-<div class="form-placeholder glass-panel">
-    <div class="blob-anim"></div>
-    <i class="fa-solid fa-charging-station" style="font-size: 2rem; color: var(--primary); margin-bottom: 12px;"></i>
-    <p>กำลังพัฒนาฟอร์ม<br><strong>บริการสถานีชาร์จไฟ</strong><br>โปรดรอการอัปเดต</p>
+<!-- 1. License Plate -->
+<div class="form-group">
+    <label>ทะเบียนรถ <span class="required">*</span></label>
+    <div class="input-icon-wrapper">
+        <i class="fa-solid fa-car input-icon"></i>
+        <input type="text" class="form-control" placeholder="กรอกทะเบียนรถ" required>
+    </div>
 </div>
+
+<!-- 2. Person bringing car to charge -->
+<div class="form-group">
+    <label>ผู้นำรถเข้าใช้บริการสถานีชาร์จ <span class="required">*</span></label>
+    <div class="input-icon-wrapper">
+        <i class="fa-solid fa-user-plus input-icon"></i>
+        <input type="text" class="form-control" placeholder="กรอกชื่อ-นามสกุล" required>
+    </div>
+</div>
+
+<!-- 3. Service Date -->
+<div class="form-group">
+    <label>วันที ใช้บริการ <span class="required">*</span></label>
+    <div class="input-icon-wrapper">
+        <input type="date" class="form-control" required style="padding-left: 16px;">
+        <i class="fa-regular fa-calendar input-icon" style="left: auto; right: 16px;"></i>
+    </div>
+</div>
+
+<!-- 4. Charge Start Time -->
+<div class="form-group">
+    <label>เวลาเริ่มการชาร์จ <span class="required">*</span></label>
+    <div class="input-icon-wrapper">
+        <input type="time" class="form-control" required style="padding-left: 16px;">
+        <i class="fa-regular fa-clock input-icon" style="left: auto; right: 16px;"></i>
+    </div>
+</div>
+
+<button class="btn-submit ripple-btn" onclick="submitForm()">
+    <span>อัพเดตข้อมูลระบบ</span>
+    <i class="fa-solid fa-paper-plane"></i>
+</button>
