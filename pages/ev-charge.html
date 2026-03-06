@@ -1,61 +1,63 @@
-<!-- 1. License Plate -->
-<div class="form-group">
-    <label>ทะเบียนรถ <span class="required">*</span></label>
-    <div class="input-icon-wrapper">
-        <i class="fa-solid fa-car input-icon"></i>
-        <input type="text" class="form-control" placeholder="กรอกทะเบียนรถ" required>
+<form id="ev_form_1" onsubmit="event.preventDefault(); openForm('บริการสถานีชาร์จไฟ', 'ev-charge-2');">
+    <!-- 1. License Plate -->
+    <div class="form-group">
+        <label>ทะเบียนรถ <span class="required">*</span></label>
+        <div class="input-icon-wrapper">
+            <i class="fa-solid fa-car input-icon"></i>
+            <input type="text" class="form-control" placeholder="กรอกทะเบียนรถ" required>
+        </div>
     </div>
-</div>
 
-<!-- 2. Person bringing car to charge -->
-<div class="form-group">
-    <label>ผู้นำรถเข้าใช้บริการสถานีชาร์จ <span class="required">*</span></label>
-    <div class="input-icon-wrapper">
-        <i class="fa-solid fa-user-plus input-icon"></i>
-        <input type="text" class="form-control" placeholder="กรอกชื่อ-นามสกุล" required>
+    <!-- 2. Person bringing car to charge -->
+    <div class="form-group">
+        <label>ผู้นำรถเข้าใช้บริการสถานีชาร์จ <span class="required">*</span></label>
+        <div class="input-icon-wrapper">
+            <i class="fa-solid fa-user-plus input-icon"></i>
+            <input type="text" class="form-control" placeholder="กรอกชื่อ-นามสกุล" required>
+        </div>
     </div>
-</div>
 
-<!-- 3. Service Date -->
-<div class="form-group">
-    <label>วันที ใช้บริการ <span class="required">*</span></label>
-    <div class="input-icon-wrapper">
-        <input type="date" class="form-control" required style="padding-left: 16px;">
-        <i class="fa-regular fa-calendar input-icon" style="left: auto; right: 16px;"></i>
+    <!-- 3. Service Date -->
+    <div class="form-group">
+        <label>วันที ใช้บริการ <span class="required">*</span></label>
+        <div class="input-icon-wrapper">
+            <input type="date" class="form-control" required style="padding-left: 16px;">
+            <i class="fa-regular fa-calendar input-icon" style="left: auto; right: 16px;"></i>
+        </div>
     </div>
-</div>
 
-<!-- 4. Charge Start Time -->
-<div class="form-group">
-    <label>เวลาเริ่มการชาร์จ <span class="required">*</span></label>
-    <div class="input-icon-wrapper">
-        <input type="time" id="ev_start_time" class="form-control" required
-            style="padding-left: 16px; padding-right: 16px;" oninput="calculateEvDuration()">
+    <!-- 4. Charge Start Time -->
+    <div class="form-group">
+        <label>เวลาเริ่มการชาร์จ <span class="required">*</span></label>
+        <div class="input-icon-wrapper">
+            <input type="time" id="ev_start_time" class="form-control" required
+                style="padding-left: 16px; padding-right: 16px;" oninput="calculateEvDuration()">
+        </div>
     </div>
-</div>
 
-<!-- 5. Charge End Time -->
-<div class="form-group">
-    <label>เวลาสิ้นสุดการชาร์จ <span class="required">*</span></label>
-    <div class="input-icon-wrapper">
-        <input type="time" id="ev_end_time" class="form-control" required
-            style="padding-left: 16px; padding-right: 16px;" oninput="calculateEvDuration()">
+    <!-- 5. Charge End Time -->
+    <div class="form-group">
+        <label>เวลาสิ้นสุดการชาร์จ <span class="required">*</span></label>
+        <div class="input-icon-wrapper">
+            <input type="time" id="ev_end_time" class="form-control" required
+                style="padding-left: 16px; padding-right: 16px;" oninput="calculateEvDuration()">
+        </div>
     </div>
-</div>
 
-<!-- 6. Total Duration (Auto Calculated) -->
-<div class="form-group">
-    <label>รวมระยะเวลาการชาร์จ <span class="required">*</span></label>
-    <div class="input-icon-wrapper">
-        <i class="fa-solid fa-stopwatch input-icon" style="color: var(--primary);"></i>
-        <input type="text" id="ev_duration" class="form-control" placeholder="คำนวณอัตโนมัติ" readonly
-            style="background: rgba(0,0,0,0.02); font-weight: 600; color: var(--primary-dark);">
+    <!-- 6. Total Duration (Auto Calculated) -->
+    <div class="form-group">
+        <label>รวมระยะเวลาการชาร์จ <span class="required">*</span></label>
+        <div class="input-icon-wrapper">
+            <i class="fa-solid fa-stopwatch input-icon" style="color: var(--primary);"></i>
+            <input type="text" id="ev_duration" class="form-control" placeholder="คำนวณอัตโนมัติ" readonly
+                style="background: rgba(0,0,0,0.02); font-weight: 600; color: var(--primary-dark);">
+        </div>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-left: 8px;">*
+            ใส่เวลาเริ่มและสิ้นสุดเพื่อคำนวณอัตโนมัติ</p>
     </div>
-    <p style="font-size: 0.8rem; color: var(--text-muted); margin-left: 8px;">*
-        ใส่เวลาเริ่มและสิ้นสุดเพื่อคำนวณอัตโนมัติ</p>
-</div>
 
-<button class="btn-submit ripple-btn" onclick="submitForm()">
-    <span>ถัดไป</span>
-    <i class="fa-solid fa-arrow-right"></i>
-</button>
+    <button type="submit" class="btn-submit ripple-btn">
+        <span>ถัดไป</span>
+        <i class="fa-solid fa-arrow-right"></i>
+    </button>
+</form>
