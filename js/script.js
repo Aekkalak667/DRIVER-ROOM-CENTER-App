@@ -304,3 +304,28 @@ function showStationDetails(stationValue) {
         }
     }
 }
+
+// Profile Page: Open with slide-in animation
+function openProfile() {
+    const overlay = document.getElementById('profileOverlay');
+    if (overlay) {
+        overlay.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+// Profile Page: Close with slide-out animation
+function closeProfile() {
+    const overlay = document.getElementById('profileOverlay');
+    if (overlay) {
+        overlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+    // Reset nav to home
+    const homeNav = document.querySelector('.nav-item');
+    if (homeNav) {
+        document.querySelectorAll('.nav-item').forEach(i => i.classList.remove('active'));
+        homeNav.classList.add('active');
+        updateIndicator(homeNav);
+    }
+}

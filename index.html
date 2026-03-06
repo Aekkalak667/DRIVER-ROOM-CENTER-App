@@ -153,7 +153,7 @@
             <i class="fa-solid fa-clock-rotate-left"></i>
             <span>ประวัติ</span>
         </a>
-        <a href="#" class="nav-item ripple-icon" onclick="switchNav(event, this)">
+        <a href="#" class="nav-item ripple-icon" onclick="switchNav(event, this); openProfile()">
             <i class="fa-solid fa-user-astronaut"></i>
             <span>โปรไฟล์</span>
         </a>
@@ -180,6 +180,111 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+
+    <!-- Profile Page Overlay -->
+    <div class="profile-overlay" id="profileOverlay">
+        <div class="profile-page">
+            <!-- Profile Header -->
+            <div class="profile-header">
+                <button class="profile-back-btn ripple-btn" onclick="closeProfile()">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <h3>โปรไฟล์</h3>
+                <button class="profile-edit-btn ripple-btn" onclick="">
+                    <i class="fa-solid fa-pen"></i>
+                </button>
+            </div>
+
+            <!-- Profile Avatar Section -->
+            <div class="profile-avatar-section">
+                <div class="profile-avatar-wrapper">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
+                        alt="Profile" class="profile-avatar">
+                    <div class="profile-avatar-badge">
+                        <i class="fa-solid fa-camera"></i>
+                    </div>
+                </div>
+                <h2 class="profile-name">คุณสมชาย ใจดี</h2>
+                <p class="profile-role">พนักงานขับรถ</p>
+            </div>
+
+            <!-- Profile Stats -->
+            <div class="profile-stats">
+                <div class="stat-card glass-panel">
+                    <i class="fa-solid fa-car" style="color: #3b82f6;"></i>
+                    <span class="stat-value">128</span>
+                    <span class="stat-label">เที่ยวงาน</span>
+                </div>
+                <div class="stat-card glass-panel">
+                    <i class="fa-solid fa-road" style="color: #10b981;"></i>
+                    <span class="stat-value">5,420</span>
+                    <span class="stat-label">กม.</span>
+                </div>
+                <div class="stat-card glass-panel">
+                    <i class="fa-solid fa-star" style="color: #f59e0b;"></i>
+                    <span class="stat-value">4.9</span>
+                    <span class="stat-label">คะแนน</span>
+                </div>
+            </div>
+
+            <!-- Profile Menu Items -->
+            <div class="profile-menu">
+                <div class="profile-menu-item glass-panel ripple-card">
+                    <div class="profile-menu-icon" style="background: rgba(59,130,246,0.15); color: #3b82f6;">
+                        <i class="fa-solid fa-id-card"></i>
+                    </div>
+                    <div class="profile-menu-text">
+                        <h4>ข้อมูลส่วนตัว</h4>
+                        <p>ชื่อ, เบอร์โทร, อีเมล</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right profile-menu-arrow"></i>
+                </div>
+                <div class="profile-menu-item glass-panel ripple-card">
+                    <div class="profile-menu-icon" style="background: rgba(16,185,129,0.15); color: #10b981;">
+                        <i class="fa-solid fa-car-side"></i>
+                    </div>
+                    <div class="profile-menu-text">
+                        <h4>รถที่รับผิดชอบ</h4>
+                        <p>ทะเบียน, รุ่นรถ, บริษัท</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right profile-menu-arrow"></i>
+                </div>
+                <div class="profile-menu-item glass-panel ripple-card">
+                    <div class="profile-menu-icon" style="background: rgba(139,92,246,0.15); color: #8b5cf6;">
+                        <i class="fa-solid fa-file-lines"></i>
+                    </div>
+                    <div class="profile-menu-text">
+                        <h4>ประวัติการทำรายการ</h4>
+                        <p>รายการที่บันทึกไว้ทั้งหมด</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right profile-menu-arrow"></i>
+                </div>
+                <div class="profile-menu-item glass-panel ripple-card">
+                    <div class="profile-menu-icon" style="background: rgba(245,158,11,0.15); color: #f59e0b;">
+                        <i class="fa-solid fa-bell"></i>
+                    </div>
+                    <div class="profile-menu-text">
+                        <h4>การแจ้งเตือน</h4>
+                        <p>ตั้งค่าการรับแจ้งเตือน</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right profile-menu-arrow"></i>
+                </div>
+                <div class="profile-menu-item glass-panel ripple-card">
+                    <div class="profile-menu-icon" style="background: rgba(239,68,68,0.15); color: #ef4444;">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </div>
+                    <div class="profile-menu-text">
+                        <h4>ออกจากระบบ</h4>
+                        <p>ลงชื่อออกจากบัญชี</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right profile-menu-arrow"></i>
+                </div>
+            </div>
+
+            <p style="text-align: center; color: var(--text-muted); font-size: 0.8rem; margin-top: 24px;">Driver Room
+                Center App v1.0</p>
         </div>
     </div>
 
