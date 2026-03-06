@@ -244,3 +244,41 @@ function setupRippleEffects() {
         }, { passive: true }));
     });
 }
+
+// EV Charge form real-time calculation
+function calculateEvDuration() {
+    const startInput = document.getElementById('ev_start_time');
+    const endInput = document.getElementById('ev_end_time');
+    const durationDisplay = document.getElementById('ev_duration');
+
+    if (!startInput || !endInput || !durationDisplay) return;
+
+    if (startInput.value && endInput.value) {
+        const startParts = startInput.value.split(':');
+        const endParts = endInput.value.split(':');
+
+        let startMins = parseInt(startParts[0]) * 60 + parseInt(startParts[1]);
+        let endMins = parseInt(endParts[0]) * 60 + parseInt(endParts[1]);
+
+        // Handle cross-midnight calculations
+        if (endMins < startMins) {
+            endMins += 24 * 60;
+        }
+
+        const diffMins = endMins - startMins;
+        const hours = Math.floor(diffMins / 60);
+        const mins = diffMins % 60;
+
+        if (hours > 0 && mins > 0) {
+            durationDisplay.value = `${hours} ชั่วโมง ${mins} นาที`;
+        } else if (hours > 0) {
+            durationDisplay.value = `${hours} ชั่วโมง`;
+        } else if (mins > 0) {
+            durationDisplay.value = `${mins} นาที`;
+        } else {
+            durationDisplay.value = `0 นาที (เวลาเท่ากัน)`;
+        }
+    } else {
+        durationDisplay.value = '';
+    }
+}
