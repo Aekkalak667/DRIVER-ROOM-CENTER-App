@@ -29,12 +29,72 @@
 <div class="form-group">
     <label>เวลาเริ่มการชาร์จ <span class="required">*</span></label>
     <div class="input-icon-wrapper">
-        <input type="time" class="form-control" required style="padding-left: 16px;">
+        <input type="time" id="ev_start_time" class="form-control" required style="padding-left: 16px;"
+            onchange="calculateEvDuration()">
         <i class="fa-regular fa-clock input-icon" style="left: auto; right: 16px;"></i>
     </div>
+</div>
+
+<!-- 5. Charge End Time -->
+<div class="form-group">
+    <label>เวลาสิ้นสุดการชาร์จ <span class="required">*</span></label>
+    <div class="input-icon-wrapper">
+        <input type="time" id="ev_end_time" class="form-control" required style="padding-left: 16px;"
+            onchange="calculateEvDuration()">
+        <i class="fa-regular fa-clock input-icon" style="left: auto; right: 16px;"></i>
+    </div>
+</div>
+
+<!-- 6. Total Duration (Auto Calculated) -->
+<div class="form-group">
+    <label>รวมระยะเวลาการชาร์จ <span class="required">*</span></label>
+    <div class="input-icon-wrapper">
+        <i class="fa-solid fa-stopwatch input-icon" style="color: var(--primary);"></i>
+        <input type="text" id="ev_duration" class="form-control" placeholder="คำนวณอัตโนมัติ" readonly
+            style="background: rgba(0,0,0,0.02); font-weight: 600; color: var(--primary-dark);">
+    </div>
+    <p style="font-size: 0.8rem; color: var(--text-muted); margin-left: 8px;">*
+        ใส่เวลาเริ่มและสิ้นสุดเพื่อคำนวณอัตโนมัติ</p>
 </div>
 
 <button class="btn-submit ripple-btn" onclick="submitForm()">
     <span>อัพเดตข้อมูลระบบ</span>
     <i class="fa-solid fa-paper-plane"></i>
 </button>
+
+<script>
+    function calculateEvDuration() {
+        const startInput = document.getElementById('ev_start_time').value;
+        const endInput = document.getElementById('ev_end_time').value;
+        const durationDisplay = document.getElementById('ev_duration');
+
+        if (startInput && endInput) {
+            const startParts = startInput.split(':');
+            const endParts = endInput.split(':');
+
+            let startMins = parseInt(startParts[0]) * 60 + parseInt(startParts[1]);
+            let endMins = parseInt(endParts[0]) * 60 + parseInt(endParts[1]);
+
+            // Handle cross-midnight calculations (e.g. start 23:00, end 01:00)
+            if (endMins < startMins) {
+                endMins += 24 * 60; // add a full day in minutes
+            }
+
+            const diffMins = endMins - startMins;
+            const hours = Math.floor(diffMins / 60);
+            const mins = diffMins % 60;
+
+            if (hours > 0 && mins > 0) {
+                durationDisplay.value = `${hours} ชั่วโมง ${mins} นาที`;
+            } else if (hours > 0) {
+                durationDisplay.value = `${hours} ชั่วโมง`;
+            } else if (mins > 0) {
+                durationDisplay.value = `${mins} นาที`;
+            } else {
+                durationDisplay.value = `0 นาที (เวลาเท่ากัน)`;
+            }
+        } else {
+            durationDisplay.value = '';
+        }
+    }
+</script>
