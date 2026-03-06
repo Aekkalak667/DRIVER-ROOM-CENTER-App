@@ -1159,15 +1159,12 @@ body {
     overflow-x: hidden;
 }
 
-body.profile-open .app-container,
-body.profile-open .bottom-nav {
+body.profile-open .app-container {
     transform: translateX(-100%);
     opacity: 0;
-    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
 }
 
-.app-container,
-.bottom-nav {
+.app-container {
     transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
 }
 
@@ -1178,7 +1175,7 @@ body.profile-open .bottom-nav {
     right: 0;
     bottom: 0;
     background: var(--bg-base);
-    z-index: 9999;
+    z-index: 100;
     transform: translateX(100%);
     opacity: 0;
     transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;

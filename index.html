@@ -145,15 +145,16 @@
     <!-- Bottom Navigation -->
     <nav class="bottom-nav glass-panel slide-up">
         <div class="active-indicator"></div>
-        <a href="#" class="nav-item active ripple-icon" onclick="switchNav(event, this)">
+        <a href="#" class="nav-item active ripple-icon" onclick="switchNav(event, this); closeProfile()">
             <i class="fa-solid fa-border-all"></i>
             <span>หน้าหลัก</span>
         </a>
-        <a href="#" class="nav-item ripple-icon" onclick="switchNav(event, this)">
+        <a href="#" class="nav-item ripple-icon" onclick="switchNav(event, this); closeProfile()">
             <i class="fa-solid fa-clock-rotate-left"></i>
             <span>ประวัติ</span>
         </a>
-        <a href="#" class="nav-item ripple-icon" onclick="switchNav(event, this); openProfile()">
+        <a href="#" class="nav-item ripple-icon" onclick="switchNav(event, this); openProfile()"
+            style="overflow: hidden;">
             <i class="fa-solid fa-user-astronaut"></i>
             <span>โปรไฟล์</span>
         </a>
@@ -183,18 +184,13 @@
         </div>
     </div>
 
-    <!-- Profile Page Overlay -->
     <div class="profile-overlay" id="profileOverlay">
         <div class="profile-page">
-            <!-- Profile Header -->
-            <div class="profile-header">
-                <button class="profile-back-btn ripple-btn" onclick="closeProfile()">
-                    <i class="fa-solid fa-arrow-left"></i>
-                </button>
-                <h3>โปรไฟล์</h3>
-                <button class="profile-edit-btn ripple-btn" onclick="">
-                    <i class="fa-solid fa-pen"></i>
-                </button>
+            <!-- Profile Title -->
+            <div style="text-align: center; padding: 24px 0 8px;">
+                <h3
+                    style="font-family: 'Prompt', sans-serif; font-size: 1.2rem; font-weight: 600; color: var(--text-main);">
+                    โปรไฟล์</h3>
             </div>
 
             <!-- Profile Avatar Section -->
