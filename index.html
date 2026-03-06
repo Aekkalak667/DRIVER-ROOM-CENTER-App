@@ -23,6 +23,39 @@
         <div class="shape shape-3"></div>
     </div>
 
+    <!-- Entry Screen (No Login User Selection) -->
+    <div class="entry-screen" id="entryScreen">
+        <div class="entry-card scale-in">
+            <div class="entry-logo">
+                <i class="fa-solid fa-truck-fast"></i>
+            </div>
+            <h2 class="entry-title">DRIVER ROOM</h2>
+            <p class="entry-subtitle">กรุณาระบุข้อมูลพนักงานเพื่อเข้าใช้ระบบ</p>
+
+            <form class="entry-form" onsubmit="saveEmployeeInfo(event)">
+                <div class="input-group">
+                    <label>รหัสพนักงาน <span class="required">*</span></label>
+                    <div class="input-with-icon">
+                        <i class="fa-solid fa-id-badge"></i>
+                        <input type="text" id="entryEmpId" placeholder="เช่น 123456" required>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label>ชื่อ-นามสกุล <span class="required">*</span></label>
+                    <div class="input-with-icon">
+                        <i class="fa-solid fa-user"></i>
+                        <input type="text" id="entryEmpName" placeholder="เช่น สมชาย ใจดี" required>
+                    </div>
+                </div>
+
+                <button type="submit" class="entry-btn ripple-btn">
+                    เข้าสู่ระบบ <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
     <div class="app-container">
         <!-- Header -->
         <header class="header scale-in">

@@ -1,4 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // 0. Check for existing Employee Record
+    checkEmployeeStatus();
+
     // 1. Set current date on banner
     const dateElement = document.getElementById('currentDate');
     const today = new Date();
@@ -25,6 +28,54 @@ document.addEventListener('DOMContentLoaded', () => {
     // 5. Setup Ripple Effects
     setupRippleEffects();
 });
+
+// ============================================
+// Employee Auth (Local Storage)
+// ============================================
+function checkEmployeeStatus() {
+    const empId = localStorage.getItem('drc_emp_id');
+    const empName = localStorage.getItem('drc_emp_name');
+
+    if (empId && empName) {
+        // User exists, hide entry screen and update UI
+        hideEntryScreen();
+        updateUserProfileUI(empName);
+    }
+}
+
+function saveEmployeeInfo(event) {
+    event.preventDefault();
+
+    const empId = document.getElementById('entryEmpId').value.trim();
+    const empName = document.getElementById('entryEmpName').value.trim();
+
+    if (empId && empName) {
+        localStorage.setItem('drc_emp_id', empId);
+        localStorage.setItem('drc_emp_name', empName);
+
+        // Hide screen and update UI
+        hideEntryScreen();
+        updateUserProfileUI(empName);
+    }
+}
+
+function hideEntryScreen() {
+    const entryScreen = document.getElementById('entryScreen');
+    if (entryScreen) {
+        entryScreen.classList.add('hidden');
+    }
+}
+
+function updateUserProfileUI(empName) {
+    // Update name in Home greeting
+    const greetingNameElements = document.querySelectorAll('.user-name');
+    greetingNameElements.forEach(el => el.textContent = empName);
+
+    // Update name in Profile page
+    const profileNameElements = document.querySelectorAll('.profile-name');
+    profileNameElements.forEach(el => el.textContent = empName);
+}
+
 
 let selectedMenuName = "";
 let selectedMenuId = "";
