@@ -706,7 +706,7 @@ body {
     background: rgba(15, 23, 42, 0.4);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
-    z-index: 100;
+    z-index: 1000;
     display: flex;
     align-items: flex-end;
     opacity: 0;
@@ -1173,7 +1173,7 @@ body {
     right: 0;
     bottom: 0;
     background: transparent;
-    z-index: 100;
+    z-index: 1000;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     pointer-events: none;
