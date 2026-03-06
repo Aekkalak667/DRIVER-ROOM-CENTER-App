@@ -235,13 +235,10 @@ body {
 /* Base App Layout */
 .app-container {
     width: 100%;
-    max-width: var(--max-width);
     min-height: 100vh;
     position: relative;
     padding-bottom: 90px;
-    box-shadow: 0 0 50px rgba(0, 0, 0, 0.05);
-    background: rgba(255, 255, 255, 0.4);
-    backdrop-filter: blur(20px);
+    background: transparent;
 }
 
 /* Glassmorphism Classes */
