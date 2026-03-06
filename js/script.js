@@ -305,19 +305,21 @@ function showStationDetails(stationValue) {
     }
 }
 
-// Profile Page: Open with slide-in animation
+// Profile Page: Open with page-swap animation
 function openProfile() {
     const overlay = document.getElementById('profileOverlay');
     if (overlay) {
+        document.body.classList.add('profile-open');
         overlay.classList.add('active');
         document.body.style.overflow = 'hidden';
     }
 }
 
-// Profile Page: Close with slide-out animation
+// Profile Page: Close with page-swap animation
 function closeProfile() {
     const overlay = document.getElementById('profileOverlay');
     if (overlay) {
+        document.body.classList.remove('profile-open');
         overlay.classList.remove('active');
         document.body.style.overflow = '';
     }
