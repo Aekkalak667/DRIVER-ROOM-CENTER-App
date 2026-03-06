@@ -145,17 +145,16 @@
     <!-- Bottom Navigation -->
     <nav class="bottom-nav glass-panel slide-up">
         <div class="active-indicator"></div>
-        <a href="#" class="nav-item active ripple-icon"
-            onclick="switchNav(event, this); closeProfile(); closeNotification()">
+        <a href="#" class="nav-item active ripple-icon" onclick="switchNav(event, this); switchToPage(0)">
             <i class="fa-solid fa-border-all"></i>
             <span>หน้าหลัก</span>
         </a>
-        <a href="#" class="nav-item ripple-icon" onclick="switchNav(event, this); closeProfile(); openNotification()"
+        <a href="#" class="nav-item ripple-icon" onclick="switchNav(event, this); switchToPage(1)"
             style="overflow: hidden;">
             <i class="fa-solid fa-bell"></i>
             <span>แจ้งเตือน</span>
         </a>
-        <a href="#" class="nav-item ripple-icon" onclick="switchNav(event, this); closeNotification(); openProfile()"
+        <a href="#" class="nav-item ripple-icon" onclick="switchNav(event, this); switchToPage(2)"
             style="overflow: hidden;">
             <i class="fa-solid fa-user-astronaut"></i>
             <span>โปรไฟล์</span>
@@ -187,7 +186,7 @@
     </div>
 
     <!-- Notification Page Overlay -->
-    <div class="profile-overlay" id="notificationOverlay">
+    <div class="page-overlay off-right" id="notificationOverlay">
         <div class="profile-page">
             <!-- Notification Title -->
             <div style="text-align: center; padding: 24px 0 8px;">
@@ -287,7 +286,7 @@
         </div>
     </div>
 
-    <div class="profile-overlay" id="profileOverlay">
+    <div class="page-overlay off-right" id="profileOverlay">
         <div class="profile-page">
             <!-- Profile Title -->
             <div style="text-align: center; padding: 24px 0 8px;">

@@ -305,42 +305,56 @@ function showStationDetails(stationValue) {
     }
 }
 
-// Profile Page: Open with page-swap animation
-function openProfile() {
-    const overlay = document.getElementById('profileOverlay');
-    if (overlay) {
-        document.body.classList.add('profile-open');
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-}
+// ============================================
+// Unified Page Transition System (3-page carousel)
+// Pages: 0=Home, 1=Notification, 2=Profile
+// ============================================
+let currentPage = 0;
 
-// Profile Page: Close with page-swap animation
-function closeProfile() {
-    const overlay = document.getElementById('profileOverlay');
-    if (overlay && overlay.classList.contains('active')) {
-        document.body.classList.remove('profile-open');
-        overlay.classList.remove('active');
+function switchToPage(targetPage) {
+    if (targetPage === currentPage) return;
+
+    const appContainer = document.querySelector('.app-container');
+    const pages = [
+        null, // Page 0 = app-container (handled separately)
+        document.getElementById('notificationOverlay'),
+        document.getElementById('profileOverlay')
+    ];
+
+    const goingRight = targetPage > currentPage; // target is to the right
+
+    // --- Hide current page ---
+    if (currentPage === 0) {
+        // Home page slides away
+        appContainer.classList.add(goingRight ? 'off-left' : 'off-right');
+    } else {
+        const currentOverlay = pages[currentPage];
+        if (currentOverlay) {
+            currentOverlay.classList.remove('page-active');
+            currentOverlay.classList.add(goingRight ? 'off-left' : 'off-right');
+        }
+    }
+
+    // --- Show target page ---
+    if (targetPage === 0) {
+        // Coming back to home
+        appContainer.classList.remove('off-left', 'off-right');
         document.body.style.overflow = '';
-    }
-}
+    } else {
+        const targetOverlay = pages[targetPage];
+        if (targetOverlay) {
+            // Position it on the correct side first (instant), then animate in
+            targetOverlay.classList.remove('off-left', 'off-right');
+            targetOverlay.classList.add(goingRight ? 'off-right' : 'off-left');
 
-// Notification Page: Open with page-swap animation
-function openNotification() {
-    const overlay = document.getElementById('notificationOverlay');
-    if (overlay) {
-        document.body.classList.add('profile-open');
-        overlay.classList.add('active');
-        document.body.style.overflow = 'hidden';
-    }
-}
+            // Force reflow to apply the starting position before animating
+            targetOverlay.offsetHeight;
 
-// Notification Page: Close with page-swap animation
-function closeNotification() {
-    const overlay = document.getElementById('notificationOverlay');
-    if (overlay && overlay.classList.contains('active')) {
-        document.body.classList.remove('profile-open');
-        overlay.classList.remove('active');
-        document.body.style.overflow = '';
+            targetOverlay.classList.remove('off-left', 'off-right');
+            targetOverlay.classList.add('page-active');
+            document.body.style.overflow = 'hidden';
+        }
     }
+
+    currentPage = targetPage;
 }

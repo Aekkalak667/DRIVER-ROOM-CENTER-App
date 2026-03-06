@@ -1153,22 +1153,20 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 }
 
 /* ============================================ */
-/* Profile Page Styles                          */
+/* Page Transition System (3-page carousel)     */
 /* ============================================ */
 body {
     overflow-x: hidden;
 }
 
-body.profile-open .app-container {
-    transform: translateX(-100%);
-    opacity: 0;
+/* All pages share the same smooth transition */
+.app-container,
+.page-overlay {
+    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.35s ease;
 }
 
-.app-container {
-    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
-}
-
-.profile-overlay {
+/* Page overlays: hidden off-screen by default */
+.page-overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -1176,18 +1174,37 @@ body.profile-open .app-container {
     bottom: 0;
     background: var(--bg-base);
     z-index: 100;
-    transform: translateX(100%);
-    opacity: 0;
-    transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
     pointer-events: none;
+    opacity: 0;
 }
 
-.profile-overlay.active {
+/* Slide direction classes */
+.page-overlay.off-right {
+    transform: translateX(100%);
+}
+
+.page-overlay.off-left {
+    transform: translateX(-100%);
+}
+
+/* Active page: visible and centered */
+.page-overlay.page-active {
     transform: translateX(0);
     opacity: 1;
     pointer-events: auto;
+}
+
+/* Home page: slide off when not active */
+.app-container.off-left {
+    transform: translateX(-100%);
+    opacity: 0;
+}
+
+.app-container.off-right {
+    transform: translateX(100%);
+    opacity: 0;
 }
 
 .profile-page {
