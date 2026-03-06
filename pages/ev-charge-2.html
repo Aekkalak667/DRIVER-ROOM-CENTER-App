@@ -95,12 +95,131 @@
         </div>
     </div>
 
-    <!-- Station Details: โรงงาน3 (placeholder) -->
+    <!-- Station Details: โรงงาน3 -->
     <div id="station_factory3" style="display: none;">
-        <div class="form-placeholder glass-panel" style="padding: 24px; text-align: center;">
-            <i class="fa-solid fa-charging-station"
-                style="font-size: 2rem; color: var(--primary); margin-bottom: 12px;"></i>
-            <p>กำลังพัฒนาข้อมูล<br><strong>สถานีชาร์จ โรงงาน3</strong><br>โปรดรอการอัปเดต</p>
+        <!-- Info Block -->
+        <div
+            style="background: white; border-radius: 12px; margin-bottom: 24px; overflow: hidden; border: 1px solid var(--border-light);">
+            <div
+                style="background: #e2e8f0; padding: 12px 16px; font-weight: 600; font-size: 1.05rem; color: var(--primary-dark);">
+                สถานีชาร์จ โรงงาน3
+            </div>
+            <div style="padding: 16px; font-size: 0.9rem; line-height: 1.8; color: var(--text-main);">
+                1.หน้าโชว์รูม(ตู้เก่า) มี 1 ตู้ชาร์จ ชาร์จได้ 1 คัน เป็นแบบ Power Plug ชาร์จ
+                ธรรมดา(4ชั่วโมง)ไม่ต้องใช้การ์ด<br><br>
+                2.หน้าโชว์รูม(ตู้สีเทา) มี 3 ตู้ชาร์จ ชาร์จได้ 6 คัน พร้อมกัน เป็นแบบ Power Plug ชาร์จ
+                ธรรมดา(4ชั่วโมง)ไม่ต้องใช้การ์ด<br><br>
+                3.หน้าโชว์รูม มี 2 ตู้ชาร์จ ชาร์จได้ 2 คัน พร้อมกัน เป็นแบบ Wall Box ชาร์จ ธรรมดา(4ชั่วโมง)
+                ต้องใช้การ์ด<br><br>
+                4.อาคารล้างรถ มี 1 ตู้ชาร์จ ชาร์จได้ 1 คัน เป็นแบบ Wall Box ชาร์จเร็ว (30 นาที) ต้องใช้การ์ด<br><br>
+                5.หน้าโชว์รูม (ตู้ดำ ใช้แอพ ) มี2 ตู้ชาร์จ ชาร์จได้ 2 คัน เป็นแบบ Wall Box ชาร์จ เร็ว (2ชั่วโมง)
+                ใช้งานคู่กับ แอพพลิเคชั่น
+            </div>
+        </div>
+
+        <!-- Choose Specific Station -->
+        <div class="form-group">
+            <label>เลือก "สถานีชาร์จ และ ประเภทที่ชาร์จ" โรงงาน3 <span class="required">*</span></label>
+            <div class="glass-panel" style="padding: 16px; border-radius: 16px; margin-top: 4px;">
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <label for="ev_f3_no7"
+                        style="display: flex; align-items: center; gap: 12px; font-weight: 400; cursor: pointer; position: relative; z-index: 10;">
+                        <span class="radio-cell" style="flex: 0 0 auto;">
+                            <input type="radio" id="ev_f3_no7" name="ev_station_type"
+                                value="No.7 หน้าโชว์รูม(ตู้เก่า) Power Plug" required style="cursor: pointer;">
+                        </span>
+                        <span>No.7 หน้าโชว์รูม(ตู้เก่า) Power Plug</span>
+                    </label>
+                    <label for="ev_f3_no1"
+                        style="display: flex; align-items: center; gap: 12px; font-weight: 400; cursor: pointer; position: relative; z-index: 10;">
+                        <span class="radio-cell" style="flex: 0 0 auto;">
+                            <input type="radio" id="ev_f3_no1" name="ev_station_type"
+                                value="No.1 หน้าโชว์รูม(ตู้สีเทา) Power Plug" style="cursor: pointer;">
+                        </span>
+                        <span>No.1 หน้าโชว์รูม(ตู้สีเทา) Power Plug</span>
+                    </label>
+                    <label for="ev_f3_no2"
+                        style="display: flex; align-items: center; gap: 12px; font-weight: 400; cursor: pointer; position: relative; z-index: 10;">
+                        <span class="radio-cell" style="flex: 0 0 auto;">
+                            <input type="radio" id="ev_f3_no2" name="ev_station_type"
+                                value="No.2 หน้าโชว์รูม(ตู้สีเทา) Power Plug" style="cursor: pointer;">
+                        </span>
+                        <span>No.2 หน้าโชว์รูม(ตู้สีเทา) Power Plug</span>
+                    </label>
+                    <label for="ev_f3_no3"
+                        style="display: flex; align-items: center; gap: 12px; font-weight: 400; cursor: pointer; position: relative; z-index: 10;">
+                        <span class="radio-cell" style="flex: 0 0 auto;">
+                            <input type="radio" id="ev_f3_no3" name="ev_station_type"
+                                value="No.3 หน้าโชว์รูม(ตู้สีเทา) Power Plug" style="cursor: pointer;">
+                        </span>
+                        <span>No.3 หน้าโชว์รูม(ตู้สีเทา) Power Plug</span>
+                    </label>
+                    <label for="ev_f3_no4"
+                        style="display: flex; align-items: center; gap: 12px; font-weight: 400; cursor: pointer; position: relative; z-index: 10;">
+                        <span class="radio-cell" style="flex: 0 0 auto;">
+                            <input type="radio" id="ev_f3_no4" name="ev_station_type"
+                                value="No.4 หน้าโชว์รูม(ตู้สีเทา) Power Plug" style="cursor: pointer;">
+                        </span>
+                        <span>No.4 หน้าโชว์รูม(ตู้สีเทา) Power Plug</span>
+                    </label>
+                    <label for="ev_f3_no5"
+                        style="display: flex; align-items: center; gap: 12px; font-weight: 400; cursor: pointer; position: relative; z-index: 10;">
+                        <span class="radio-cell" style="flex: 0 0 auto;">
+                            <input type="radio" id="ev_f3_no5" name="ev_station_type"
+                                value="No.5 หน้าโชว์รูม(ตู้สีเทา) Power Plug" style="cursor: pointer;">
+                        </span>
+                        <span>No.5 หน้าโชว์รูม(ตู้สีเทา) Power Plug</span>
+                    </label>
+                    <label for="ev_f3_no6"
+                        style="display: flex; align-items: center; gap: 12px; font-weight: 400; cursor: pointer; position: relative; z-index: 10;">
+                        <span class="radio-cell" style="flex: 0 0 auto;">
+                            <input type="radio" id="ev_f3_no6" name="ev_station_type"
+                                value="No.6 หน้าโชว์รูม(ตู้สีเทา) Power Plug" style="cursor: pointer;">
+                        </span>
+                        <span>No.6 หน้าโชว์รูม(ตู้สีเทา) Power Plug</span>
+                    </label>
+                    <label for="ev_f3_quick"
+                        style="display: flex; align-items: center; gap: 12px; font-weight: 400; cursor: pointer; position: relative; z-index: 10;">
+                        <span class="radio-cell" style="flex: 0 0 auto;">
+                            <input type="radio" id="ev_f3_quick" name="ev_station_type"
+                                value="อาคารล้างรถ(ใช้การ์ด) (Quick Charge) Wall Box" style="cursor: pointer;">
+                        </span>
+                        <span>อาคารล้างรถ(ใช้การ์ด) (Quick Charge) Wall Box</span>
+                    </label>
+                    <label for="ev_f3_wb1"
+                        style="display: flex; align-items: center; gap: 12px; font-weight: 400; cursor: pointer; position: relative; z-index: 10;">
+                        <span class="radio-cell" style="flex: 0 0 auto;">
+                            <input type="radio" id="ev_f3_wb1" name="ev_station_type"
+                                value="No.1 หน้าโชว์รูม (ใช้การ์ด) Wall Box" style="cursor: pointer;">
+                        </span>
+                        <span>No.1 หน้าโชว์รูม (ใช้การ์ด) Wall Box</span>
+                    </label>
+                    <label for="ev_f3_wb2"
+                        style="display: flex; align-items: center; gap: 12px; font-weight: 400; cursor: pointer; position: relative; z-index: 10;">
+                        <span class="radio-cell" style="flex: 0 0 auto;">
+                            <input type="radio" id="ev_f3_wb2" name="ev_station_type"
+                                value="No.2 หน้าโชว์รูม (ใช้การ์ด) Wall Box" style="cursor: pointer;">
+                        </span>
+                        <span>No.2 หน้าโชว์รูม (ใช้การ์ด) Wall Box</span>
+                    </label>
+                    <label for="ev_f3_app3"
+                        style="display: flex; align-items: center; gap: 12px; font-weight: 400; cursor: pointer; position: relative; z-index: 10;">
+                        <span class="radio-cell" style="flex: 0 0 auto;">
+                            <input type="radio" id="ev_f3_app3" name="ev_station_type"
+                                value="หน้าโชว์รูม (ใช้แอพ) Wall Box ตู้ดำ No.3" style="cursor: pointer;">
+                        </span>
+                        <span>หน้าโชว์รูม (ใช้แอพ) Wall Box ตู้ดำ No.3</span>
+                    </label>
+                    <label for="ev_f3_app4"
+                        style="display: flex; align-items: center; gap: 12px; font-weight: 400; cursor: pointer; position: relative; z-index: 10;">
+                        <span class="radio-cell" style="flex: 0 0 auto;">
+                            <input type="radio" id="ev_f3_app4" name="ev_station_type"
+                                value="หน้าโชว์รูม (ใช้แอพ) Wall Box ตู้ดำ No.4" style="cursor: pointer;">
+                        </span>
+                        <span>หน้าโชว์รูม (ใช้แอพ) Wall Box ตู้ดำ No.4</span>
+                    </label>
+                </div>
+            </div>
         </div>
     </div>
 
