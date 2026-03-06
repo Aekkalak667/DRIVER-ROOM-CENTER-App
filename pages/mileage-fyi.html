@@ -1,0 +1,62 @@
+<!-- 1. License Plate -->
+<div class="form-group">
+    <label>ทะเบียนรถ (ตัวอย่าง 1สส 999) <span class="required">*</span></label>
+    <div class="input-icon-wrapper">
+        <i class="fa-solid fa-car input-icon"></i>
+        <input type="text" class="form-control" placeholder="Your answer" required>
+    </div>
+</div>
+
+<!-- 2. Mileage Date 25 -->
+<div class="form-group">
+    <label>เลขไมล์ ณ. วันที่ 25 <span class="required">*</span></label>
+    <div class="input-icon-wrapper">
+        <i class="fa-solid fa-gauge input-icon"></i>
+        <input type="number" class="form-control" placeholder="Your answer" required>
+    </div>
+</div>
+
+<!-- 3. Driver Name / Responsible Person -->
+<div class="form-group">
+    <label>ชื่อพนักงานขับรถ / ผู้รับผิดชอบ <span class="required">*</span></label>
+    <div class="input-icon-wrapper">
+        <i class="fa-solid fa-user input-icon"></i>
+        <input type="text" class="form-control" placeholder="Your answer" required>
+    </div>
+</div>
+
+<!-- 4. Company -->
+<div class="form-group">
+    <label>บริษัทต้นสังกัด <span class="required">*</span></label>
+    <div class="glass-panel" style="padding: 16px; border-radius: 16px; margin-top: 4px;">
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+            <label for="fyi_comp_mmth"
+                style="display: flex; align-items: center; gap: 12px; font-weight: 400; cursor: pointer; position: relative; z-index: 10;">
+                <span class="radio-cell" style="flex: 0 0 auto;">
+                    <input type="radio" id="fyi_comp_mmth" name="company_fyi" value="MMTh" required
+                        style="cursor: pointer;">
+                </span>
+                <span>MMTh</span>
+            </label>
+            <label for="fyi_comp_sms"
+                style="display: flex; align-items: center; gap: 12px; font-weight: 400; cursor: pointer; position: relative; z-index: 10;">
+                <span class="radio-cell" style="flex: 0 0 auto;">
+                    <input type="radio" id="fyi_comp_sms" name="company_fyi" value="SMS" style="cursor: pointer;">
+                </span>
+                <span>SMS</span>
+            </label>
+            <label for="fyi_comp_so"
+                style="display: flex; align-items: center; gap: 12px; font-weight: 400; cursor: pointer; position: relative; z-index: 10;">
+                <span class="radio-cell" style="flex: 0 0 auto;">
+                    <input type="radio" id="fyi_comp_so" name="company_fyi" value="SO" style="cursor: pointer;">
+                </span>
+                <span>SO</span>
+            </label>
+        </div>
+    </div>
+</div>
+
+<button class="btn-submit ripple-btn" onclick="submitForm()">
+    <span>อัพเดตข้อมูลระบบ</span>
+    <i class="fa-solid fa-paper-plane"></i>
+</button>
