@@ -148,9 +148,9 @@ function updateIndicator(element) {
     const leftPos = itemRect.left - navRect.left;
     const itemWidth = itemRect.width;
 
-    // Apply styling with spring effect
+    // Apply styling with hardware acceleration (transform)
     indicator.style.width = `${itemWidth}px`;
-    indicator.style.left = `${leftPos}px`;
+    indicator.style.transform = `translateY(-50%) translateX(${leftPos}px) translateZ(0)`;
 }
 
 // Premium Micro-interactions: 3D Tilt Effect
