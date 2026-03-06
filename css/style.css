@@ -643,6 +643,7 @@ body {
 .active-indicator {
     position: absolute;
     top: 50%;
+    left: 0;
     transform: translateY(-50%) translateZ(0);
     width: 0;
     height: 48px;

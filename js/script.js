@@ -141,16 +141,9 @@ function updateIndicator(element) {
     const indicator = document.querySelector('.active-indicator');
     const nav = document.querySelector('.bottom-nav');
 
-    // Calculate position
-    const navRect = nav.getBoundingClientRect();
-    const itemRect = element.getBoundingClientRect();
-
-    const leftPos = itemRect.left - navRect.left;
-    const itemWidth = itemRect.width;
-
     // Apply styling with hardware acceleration (transform)
-    indicator.style.width = `${itemWidth}px`;
-    indicator.style.transform = `translateY(-50%) translateX(${leftPos}px) translateZ(0)`;
+    indicator.style.width = `${element.offsetWidth}px`;
+    indicator.style.transform = `translateY(-50%) translateX(${element.offsetLeft}px) translateZ(0)`;
 }
 
 // Premium Micro-interactions: 3D Tilt Effect
