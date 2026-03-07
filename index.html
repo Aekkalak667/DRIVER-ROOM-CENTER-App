@@ -4,16 +4,199 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Driver Room Center App</title>
+    <title>เข้าสู่ระบบ - Driver Room Center</title>
     <link rel="stylesheet" href="css/style.css">
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .app-logo {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .app-logo i {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 12px;
+            text-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+
+        .app-logo h1 {
+            font-family: 'Outfit', sans-serif;
+            font-weight: 700;
+            margin: 0;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .app-logo p {
+            font-family: 'Prompt', sans-serif;
+            color: var(--text-muted);
+            margin: 5px 0 0 0;
+            font-size: 0.9rem;
+        }
+
+        .auth-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(20px);
+            border-radius: 24px;
+            padding: 24px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        /* Tabs */
+        .tab-nav {
+            display: flex;
+            background: rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            padding: 4px;
+            margin-bottom: 24px;
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            background: transparent;
+            font-family: 'Prompt', sans-serif;
+            font-weight: 500;
+            color: var(--text-muted);
+            border-radius: 8px;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .tab-btn.active {
+            background: white;
+            color: var(--primary);
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .tab-pane {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Form Inputs */
+        .auth-input-group {
+            margin-bottom: 16px;
+        }
+
+        .auth-input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #475569;
+        }
+
+        .auth-input {
+            width: 100%;
+            padding: 14px 14px 14px 44px;
+            border-radius: 12px;
+            border: 1px solid #cbd5e1;
+            background: #fff;
+            font-family: 'Prompt', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+
+        .auth-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 16px;
+            border-radius: 14px;
+            border: none;
+            background: var(--primary);
+            color: white;
+            font-family: 'Prompt', sans-serif;
+            font-weight: 600;
+            font-size: 1.05rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+            margin-top: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .auth-btn:active {
+            transform: scale(0.98);
+        }
+
+        /* Notice Text */
+        .notice-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        #loadingOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.9);
+            z-index: 1000;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            backdrop-filter: blur(5px);
+        }
+
+        #loadingOverlay.active {
+            display: flex;
+        }
+    </style>
 </head>
 
 <body>
@@ -23,388 +206,229 @@
         <div class="shape shape-3"></div>
     </div>
 
-
-    <div class="app-container">
-        <!-- Header -->
-        <header class="header scale-in">
-            <div class="user-info">
-                <div class="avatar-container">
-                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80"
-                        alt="User Profile" class="profile-pic">
-                    <span class="status-dot"></span>
-                </div>
-                <div class="greeting">
-                    <p class="greeting-text">ยินดีต้อนรับ,</p>
-                    <h2 class="user-name">คุณสมชาย ใจดี</h2>
-                </div>
-            </div>
-            <button class="notification-btn ripple-btn">
-                <i class="fa-regular fa-bell"></i>
-                <span class="badge pulse-anim">2</span>
-            </button>
-        </header>
-
-        <!-- Main Banner Ad/Gif -->
-        <div class="main-banner-container fade-in-up"
-            style="margin: 0 var(--spacing) 20px; border-radius: var(--radius-xl); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
-            <img src="images/banner.gif" alt="Center Banner"
-                style="width: 100%; height: auto; display: block; object-fit: cover;">
-        </div>
-
-        <!-- Banner -->
-        <section class="banner glass-panel tilt-card fade-in-up" style="animation-delay: 0.1s;">
-            <div class="banner-bg-anim"></div>
-            <div class="banner-content">
-                <div class="banner-tag">ระบบจัดการข้อมูลพนักงานขับรถ</div>
-                <h1>DRIVER ROOM CENTER</h1>
-                <div class="date-chip">
-                    <i class="fa-regular fa-calendar-days"></i>
-                    <span id="currentDate">--/--/----</span>
-                </div>
-            </div>
-            <div class="banner-icon">
-                <i class="fa-solid fa-car"></i>
-            </div>
-        </section>
-
-        <!-- Main Menu -->
-        <main class="menu-section">
-            <div class="section-header fade-in-up" style="animation-delay: 0.1s;">
-                <h3 class="section-title">เมนูหลัก <span class="badge-new">ใหม่</span></h3>
-                <p class="section-desc">เลือกรายการที่คุณต้องการทำรายการ</p>
-            </div>
-
-            <div class="menu-grid">
-                <!-- Menu 1 -->
-                <button class="menu-card glass-panel ripple-card fade-in-up" data-menu="daily-check"
-                    style="animation-delay: 0.2s;" onclick="selectMenu(this)">
-                    <div class="icon-wrapper glass-icon" style="--card-color: #3b82f6;">
-                        <i class="fa-solid fa-clipboard-check"></i>
-                    </div>
-                    <div class="menu-text">
-                        <h4>เช็ครถประจำวัน</h4>
-                        <p>บันทึกการตรวจสภาพก่อนใช้งาน</p>
-                    </div>
-                    <div class="arrow-icon"><i class="fa-solid fa-arrow-right"></i></div>
-                </button>
-
-                <!-- Menu 2 -->
-                <button class="menu-card glass-panel ripple-card fade-in-up" data-menu="maintenance"
-                    style="animation-delay: 0.3s;" onclick="selectMenu(this)">
-                    <div class="icon-wrapper glass-icon" style="--card-color: #f59e0b;">
-                        <i class="fa-solid fa-screwdriver-wrench"></i>
-                    </div>
-                    <div class="menu-text">
-                        <h4>แจ้งเช็คระยะ</h4>
-                        <p>ตรวจสอบและแจ้งเตือนเข้าศูนย์</p>
-                    </div>
-                    <div class="arrow-icon"><i class="fa-solid fa-arrow-right"></i></div>
-                </button>
-
-                <!-- Menu 3 -->
-                <button class="menu-card glass-panel ripple-card fade-in-up" data-menu="mileage-lcb"
-                    style="animation-delay: 0.4s;" onclick="selectMenu(this)">
-                    <div class="icon-wrapper glass-icon" style="--card-color: #10b981;">
-                        <i class="fa-solid fa-gauge-high"></i>
-                    </div>
-                    <div class="menu-text">
-                        <h4>เลขไมล์ (LCB)</h4>
-                        <p>บันทึกเลขไมล์ทุกวันที่ 25</p>
-                    </div>
-                    <div class="arrow-icon"><i class="fa-solid fa-arrow-right"></i></div>
-                </button>
-
-                <!-- Menu 4 -->
-                <button class="menu-card glass-panel ripple-card fade-in-up" data-menu="mileage-fyi"
-                    style="animation-delay: 0.5s;" onclick="selectMenu(this)">
-                    <div class="icon-wrapper glass-icon" style="--card-color: #8b5cf6;">
-                        <i class="fa-solid fa-road"></i>
-                    </div>
-                    <div class="menu-text">
-                        <h4>เลขไมล์ (FYI & EA)</h4>
-                        <p>บันทึกเลขไมล์ทุกวันที่ 25</p>
-                    </div>
-                    <div class="arrow-icon"><i class="fa-solid fa-arrow-right"></i></div>
-                </button>
-
-                <!-- Menu 5 -->
-                <button class="menu-card glass-panel ripple-card fade-in-up" data-menu="ev-charge"
-                    style="animation-delay: 0.6s;" onclick="selectMenu(this)">
-                    <div class="icon-wrapper glass-icon" style="--card-color: #06b6d4;">
-                        <i class="fa-solid fa-charging-station"></i>
-                    </div>
-                    <div class="menu-text">
-                        <h4>บริการสถานีชาร์จไฟ</h4>
-                        <p>บันทึกข้อมูลการชาร์จรถ EV</p>
-                    </div>
-                    <div class="arrow-icon"><i class="fa-solid fa-arrow-right"></i></div>
-                </button>
-            </div>
-        </main>
+    <!-- Loading Screen -->
+    <div id="loadingOverlay">
+        <i class="fa-solid fa-circle-notch fa-spin fa-3x" style="color: var(--primary); margin-bottom: 16px;"></i>
+        <p style="font-family: 'Prompt', sans-serif; font-weight: 500; color: var(--text-main); font-size: 1.1rem;"
+            id="loadingText">กำลังตรวจสอบข้อมูล...</p>
     </div>
 
-    <!-- Bottom Navigation -->
-    <nav class="bottom-nav glass-panel slide-up">
-        <div class="active-indicator"></div>
-        <a href="#" class="nav-item active ripple-icon" onclick="switchNav(event, this); switchToPage(0)">
-            <i class="fa-solid fa-border-all"></i>
-            <span>หน้าหลัก</span>
-        </a>
-        <a href="#" class="nav-item ripple-icon" onclick="switchNav(event, this); switchToPage(1)"
-            style="overflow: hidden;">
-            <i class="fa-solid fa-bell"></i>
-            <span>แจ้งเตือน</span>
-        </a>
-        <a href="#" class="nav-item ripple-icon" onclick="switchNav(event, this); switchToPage(2)"
-            style="overflow: hidden;">
-            <i class="fa-solid fa-user-astronaut"></i>
-            <span>โปรไฟล์</span>
-        </a>
-    </nav>
+    <div class="login-container">
+        <div class="app-logo fade-in-up">
+            <i class="fa-solid fa-car-side"></i>
+            <h1>DRIVER ROOM</h1>
+            <p>Center Application</p>
+        </div>
 
-    <!-- Overlay Form -->
-    <div class="overlay" id="formOverlay">
-        <div class="form-drawer">
-            <div class="drawer-header">
-                <div class="drawer-title-wrapper">
-                    <div class="drawer-icon"><i class="fa-solid fa-pen-to-square"></i></div>
-                    <h3 id="drawerTitle">หัวข้อเมนู</h3>
+        <div class="auth-card fade-in-up" style="animation-delay: 0.1s;">
+
+            <!-- Tabs Navigation -->
+            <div class="tab-nav">
+                <button class="tab-btn active" onclick="switchTab('login')">เข้าสู่ระบบ</button>
+                <button class="tab-btn" onclick="switchTab('register')">ลงทะเบียน</button>
+            </div>
+
+            <!-- Login Pane -->
+            <div id="login-pane" class="tab-pane active">
+                <div class="auth-input-group relative">
+                    <label>รหัสพนักงาน (พนักงานที่เคยลงทะเบียนแล้ว)</label>
+                    <div class="input-icon-wrapper">
+                        <i class="fa-solid fa-hashtag input-icon"></i>
+                        <input type="text" id="login_emp_id" class="auth-input" placeholder="กรอกรหัสพนักงาน"
+                            autocomplete="off">
+                    </div>
                 </div>
-                <button class="close-btn ripple-btn" onclick="closeForm()">
-                    <i class="fa-solid fa-xmark"></i>
+                <button class="auth-btn ripple-btn" onclick="handleLogin()">
+                    <i class="fa-solid fa-arrow-right-to-bracket"></i> เข้าสู่ระบบ
                 </button>
             </div>
-            <div class="drawer-body">
-                <div class="mockup-form" id="formContent">
-                    <!-- Content loaded dynamically from pages/ folder -->
-                    <div style="text-align: center; padding: 40px 0; color: var(--text-muted);">
-                        <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; margin-bottom: 12px;"></i>
-                        <p>กำลังโหลด...</p>
+
+            <!-- Register Pane -->
+            <div id="register-pane" class="tab-pane">
+                <div
+                    style="background: rgba(59, 130, 246, 0.1); color: #3b82f6; padding: 12px; border-radius: 12px; margin-bottom: 20px; font-size: 0.85rem; display: flex; gap: 10px; align-items: flex-start;">
+                    <i class="fa-solid fa-circle-info" style="margin-top: 3px;"></i>
+                    <span>สำหรับเข้าใช้งานครั้งแรก ระบบจะบันทึกข้อมูลของคุณไว้ในฐานข้อมูล</span>
+                </div>
+
+                <div class="auth-input-group">
+                    <label>รหัสพนักงาน</label>
+                    <div class="input-icon-wrapper">
+                        <i class="fa-solid fa-hashtag input-icon"></i>
+                        <input type="text" id="reg_emp_id" class="auth-input" placeholder="กรอกรหัสพนักงาน"
+                            autocomplete="off">
                     </div>
                 </div>
+
+                <div style="display: flex; gap: 12px;">
+                    <div class="auth-input-group" style="flex: 1;">
+                        <label>ชื่อจริง</label>
+                        <div class="input-icon-wrapper">
+                            <i class="fa-regular fa-user input-icon"></i>
+                            <input type="text" id="reg_firstname" class="auth-input" placeholder="ชื่อจริง">
+                        </div>
+                    </div>
+
+                    <div class="auth-input-group" style="flex: 1;">
+                        <label>นามสกุล</label>
+                        <div class="input-icon-wrapper">
+                            <i class="fa-regular fa-id-badge input-icon"></i>
+                            <input type="text" id="reg_lastname" class="auth-input" placeholder="นามสกุล">
+                        </div>
+                    </div>
+                </div>
+
+                <button class="auth-btn ripple-btn" onclick="handleRegister()"
+                    style="background: #10b981; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);">
+                    <i class="fa-solid fa-user-check"></i> ลงทะเบียนและเข้าสู่ระบบ
+                </button>
             </div>
+
         </div>
+
+        <p class="notice-text fade-in-up" style="animation-delay: 0.2s;">
+            ระบบจะบันทึกการเข้าสู่ระบบของคุณไว้ในอุปกรณ์นี้<br>คุณไม่ต้องเข้าสู่ระบบใหม่จนกว่าจะกด "ออกจากระบบ"
+        </p>
     </div>
-
-    <!-- Notification Page Overlay -->
-    <div class="page-overlay off-right" id="notificationOverlay">
-        <div class="profile-page">
-            <!-- Notification Title -->
-            <div style="text-align: center; padding: 24px 0 8px;">
-                <h3
-                    style="font-family: 'Prompt', sans-serif; font-size: 1.2rem; font-weight: 600; color: var(--text-main);">
-                    แจ้งเตือน</h3>
-                <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 4px;">พนักงานที่ยังไม่เช็ครถประจำวัน
-                </p>
-            </div>
-
-            <!-- Warning Banner -->
-            <div
-                style="display: flex; align-items: center; gap: 8px; padding: 12px 16px; background: rgba(239,68,68,0.08); border-radius: 14px; margin-bottom: 20px;">
-                <i class="fa-solid fa-triangle-exclamation" style="color: #ef4444; font-size: 1.1rem;"></i>
-                <span
-                    style="font-weight: 500; color: #ef4444; font-size: 0.9rem;">วันนี้ยังมีพนักงานที่ยังไม่เช็ครถ</span>
-            </div>
-
-            <!-- Notification Cards -->
-            <div style="display: flex; flex-direction: column; gap: 12px;">
-                <!-- Person 1 -->
-                <div class="glass-panel" style="padding: 16px; border-radius: 16px; border-left: 4px solid #ef4444;">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <div
-                            style="width: 44px; height: 44px; border-radius: 50%; background: rgba(239,68,68,0.12); display: flex; align-items: center; justify-content: center;">
-                            <i class="fa-solid fa-user" style="color: #ef4444;"></i>
-                        </div>
-                        <div style="flex: 1;">
-                            <h4
-                                style="font-family: 'Prompt'; font-weight: 500; font-size: 0.95rem; color: var(--text-main);">
-                                คุณสมศักดิ์ รักดี</h4>
-                            <p style="font-size: 0.8rem; color: var(--text-muted);">ทะเบียน: กก 1234 • MMTH</p>
-                        </div>
-                        <span
-                            style="font-size: 0.75rem; color: #ef4444; font-weight: 600; background: rgba(239,68,68,0.1); padding: 4px 10px; border-radius: 20px;">ยังไม่เช็ค</span>
-                    </div>
-                </div>
-
-                <!-- Person 2 -->
-                <div class="glass-panel" style="padding: 16px; border-radius: 16px; border-left: 4px solid #ef4444;">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <div
-                            style="width: 44px; height: 44px; border-radius: 50%; background: rgba(239,68,68,0.12); display: flex; align-items: center; justify-content: center;">
-                            <i class="fa-solid fa-user" style="color: #ef4444;"></i>
-                        </div>
-                        <div style="flex: 1;">
-                            <h4
-                                style="font-family: 'Prompt'; font-weight: 500; font-size: 0.95rem; color: var(--text-main);">
-                                คุณวิชัย ใจดี</h4>
-                            <p style="font-size: 0.8rem; color: var(--text-muted);">ทะเบียน: ขข 5678 • SMS</p>
-                        </div>
-                        <span
-                            style="font-size: 0.75rem; color: #ef4444; font-weight: 600; background: rgba(239,68,68,0.1); padding: 4px 10px; border-radius: 20px;">ยังไม่เช็ค</span>
-                    </div>
-                </div>
-
-                <!-- Person 3 -->
-                <div class="glass-panel" style="padding: 16px; border-radius: 16px; border-left: 4px solid #f59e0b;">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <div
-                            style="width: 44px; height: 44px; border-radius: 50%; background: rgba(245,158,11,0.12); display: flex; align-items: center; justify-content: center;">
-                            <i class="fa-solid fa-user" style="color: #f59e0b;"></i>
-                        </div>
-                        <div style="flex: 1;">
-                            <h4
-                                style="font-family: 'Prompt'; font-weight: 500; font-size: 0.95rem; color: var(--text-main);">
-                                คุณประยุทธ์ สุขสันต์</h4>
-                            <p style="font-size: 0.8rem; color: var(--text-muted);">ทะเบียน: คค 9012 • SO</p>
-                        </div>
-                        <span
-                            style="font-size: 0.75rem; color: #f59e0b; font-weight: 600; background: rgba(245,158,11,0.1); padding: 4px 10px; border-radius: 20px;">รอดำเนินการ</span>
-                    </div>
-                </div>
-
-                <!-- Person 4 - checked -->
-                <div class="glass-panel"
-                    style="padding: 16px; border-radius: 16px; border-left: 4px solid #10b981; opacity: 0.7;">
-                    <div style="display: flex; align-items: center; gap: 12px;">
-                        <div
-                            style="width: 44px; height: 44px; border-radius: 50%; background: rgba(16,185,129,0.12); display: flex; align-items: center; justify-content: center;">
-                            <i class="fa-solid fa-user-check" style="color: #10b981;"></i>
-                        </div>
-                        <div style="flex: 1;">
-                            <h4
-                                style="font-family: 'Prompt'; font-weight: 500; font-size: 0.95rem; color: var(--text-main);">
-                                คุณสมชาย ใจดี</h4>
-                            <p style="font-size: 0.8rem; color: var(--text-muted);">ทะเบียน: งง 3456 • MMTH</p>
-                        </div>
-                        <span
-                            style="font-size: 0.75rem; color: #10b981; font-weight: 600; background: rgba(16,185,129,0.1); padding: 4px 10px; border-radius: 20px;">เช็คแล้ว</span>
-                    </div>
-                </div>
-            </div>
-
-            <p style="text-align: center; color: var(--text-muted); font-size: 0.8rem; margin-top: 24px;">* ข้อมูลจำลอง
-                รอเชื่อมต่อระบบจริง</p>
-        </div>
-    </div>
-
-    <div class="page-overlay off-right" id="profileOverlay">
-        <div class="profile-page">
-            <!-- Profile Title -->
-            <div style="text-align: center; padding: 24px 0 8px;">
-                <h3
-                    style="font-family: 'Prompt', sans-serif; font-size: 1.2rem; font-weight: 600; color: var(--text-main);">
-                    โปรไฟล์</h3>
-            </div>
-
-            <!-- Profile Avatar Section -->
-            <div class="profile-avatar-section">
-                <div class="profile-avatar-wrapper">
-                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
-                        alt="Profile" class="profile-avatar">
-                    <div class="profile-avatar-badge">
-                        <i class="fa-solid fa-camera"></i>
-                    </div>
-                </div>
-                <h2 class="profile-name">คุณสมชาย ใจดี</h2>
-                <p class="profile-role">พนักงานขับรถ</p>
-            </div>
-
-            <!-- Profile Stats -->
-            <div class="profile-stats">
-                <div class="stat-card glass-panel">
-                    <i class="fa-solid fa-car" style="color: #3b82f6;"></i>
-                    <span class="stat-value">128</span>
-                    <span class="stat-label">เที่ยวงาน</span>
-                </div>
-                <div class="stat-card glass-panel">
-                    <i class="fa-solid fa-road" style="color: #10b981;"></i>
-                    <span class="stat-value">5,420</span>
-                    <span class="stat-label">กม.</span>
-                </div>
-                <div class="stat-card glass-panel">
-                    <i class="fa-solid fa-star" style="color: #f59e0b;"></i>
-                    <span class="stat-value">4.9</span>
-                    <span class="stat-label">คะแนน</span>
-                </div>
-            </div>
-
-            <!-- Profile Menu Items -->
-            <div class="profile-menu">
-                <div class="profile-menu-item glass-panel ripple-card">
-                    <div class="profile-menu-icon" style="background: rgba(59,130,246,0.15); color: #3b82f6;">
-                        <i class="fa-solid fa-id-card"></i>
-                    </div>
-                    <div class="profile-menu-text">
-                        <h4>ข้อมูลส่วนตัว</h4>
-                        <p>ชื่อ, เบอร์โทร, อีเมล</p>
-                    </div>
-                    <i class="fa-solid fa-chevron-right profile-menu-arrow"></i>
-                </div>
-                <div class="profile-menu-item glass-panel ripple-card">
-                    <div class="profile-menu-icon" style="background: rgba(16,185,129,0.15); color: #10b981;">
-                        <i class="fa-solid fa-car-side"></i>
-                    </div>
-                    <div class="profile-menu-text">
-                        <h4>รถที่รับผิดชอบ</h4>
-                        <p>ทะเบียน, รุ่นรถ, บริษัท</p>
-                    </div>
-                    <i class="fa-solid fa-chevron-right profile-menu-arrow"></i>
-                </div>
-                <div class="profile-menu-item glass-panel ripple-card">
-                    <div class="profile-menu-icon" style="background: rgba(139,92,246,0.15); color: #8b5cf6;">
-                        <i class="fa-solid fa-file-lines"></i>
-                    </div>
-                    <div class="profile-menu-text">
-                        <h4>ประวัติการทำรายการ</h4>
-                        <p>รายการที่บันทึกไว้ทั้งหมด</p>
-                    </div>
-                    <i class="fa-solid fa-chevron-right profile-menu-arrow"></i>
-                </div>
-                <div class="profile-menu-item glass-panel ripple-card">
-                    <div class="profile-menu-icon" style="background: rgba(245,158,11,0.15); color: #f59e0b;">
-                        <i class="fa-solid fa-bell"></i>
-                    </div>
-                    <div class="profile-menu-text">
-                        <h4>การแจ้งเตือน</h4>
-                        <p>ตั้งค่าการรับแจ้งเตือน</p>
-                    </div>
-                    <i class="fa-solid fa-chevron-right profile-menu-arrow"></i>
-                </div>
-                <div class="profile-menu-item glass-panel ripple-card" onclick="window.location.href='admin.html'">
-                    <div class="profile-menu-icon" style="background: rgba(15,23,42,0.15); color: #0f172a;">
-                        <i class="fa-solid fa-users-gear"></i>
-                    </div>
-                    <div class="profile-menu-text">
-                        <h4>จัดการข้อมูลพนักงาน (Admin)</h4>
-                        <p>เพิ่ม แก้ไข ลบ ข้อมูลพนักงาน</p>
-                    </div>
-                    <i class="fa-solid fa-chevron-right profile-menu-arrow"></i>
-                </div>
-                <!-- /Admin Placeholder -->
-
-                <div class="profile-menu-item glass-panel ripple-card">
-                    <div class="profile-menu-icon" style="background: rgba(239,68,68,0.15); color: #ef4444;">
-                        <i class="fa-solid fa-right-from-bracket"></i>
-                    </div>
-                    <div class="profile-menu-text">
-                        <h4>ออกจากระบบ</h4>
-                        <p>ลงชื่อออกจากบัญชี</p>
-                    </div>
-                    <i class="fa-solid fa-chevron-right profile-menu-arrow"></i>
-                </div>
-            </div>
-
-            <p style="text-align: center; color: var(--text-muted); font-size: 0.8rem; margin-top: 24px;">Driver Room
-                Center App v1.0</p>
-        </div>
-    </div>
-
-    <!-- Custom Cursor (optional touch of modern web) -->
-    <div class="cursor-glow"></div>
 
     <!-- Firebase SDK & Config -->
     <script type="module" src="js/firebase-config.js"></script>
-    <script type="module" src="js/script.js"></script>
+
+    <script type="module">
+        import { db } from './js/firebase-config.js';
+        import { collection, query, where, getDocs, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // Check if user is already logged in
+        window.onload = () => {
+            const savedUser = localStorage.getItem('driver_app_user');
+            if (savedUser) {
+                // Already logged in, redirect to home
+                window.location.replace('home.html');
+            }
+        };
+
+        // Tab Switching Logic
+        window.switchTab = function (tabName) {
+            // Update buttons
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            // Update panes
+            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+            document.getElementById(tabName + '-pane').classList.add('active');
+        };
+
+        // UI Loading State
+        function setLoading(active, text = 'กำลังตรวจสอบข้อมูล...') {
+            const overlay = document.getElementById('loadingOverlay');
+            document.getElementById('loadingText').textContent = text;
+            if (active) {
+                overlay.classList.add('active');
+            } else {
+                overlay.classList.remove('active');
+            }
+        }
+
+        // Login Handler
+        window.handleLogin = async function () {
+            const empId = document.getElementById('login_emp_id').value.trim();
+            if (!empId) {
+                alert('กรุณากรอกรหัสพนักงาน');
+                return;
+            }
+
+            setLoading(true, 'กำลังเข้าสู่ระบบ...');
+
+            try {
+                // Check if user exists in Firestore
+                const q = query(collection(db, "employees"), where("empId", "==", empId));
+                const querySnapshot = await getDocs(q);
+
+                if (querySnapshot.empty) {
+                    setLoading(false);
+                    alert('ไม่พบรหัสพนักงานนี้ในระบบ กรุณาไปที่แท็บ "ลงทะเบียน" เพื่อลงชื่อเข้าใช้งานครั้งแรก');
+                    return;
+                }
+
+                // Get the first matched user's data
+                let userData = null;
+                querySnapshot.forEach((doc) => { userData = doc.data(); });
+
+                // Save to localStorage
+                localStorage.setItem('driver_app_user', JSON.stringify({
+                    empId: userData.empId,
+                    name: userData.name
+                }));
+
+                // Redirect to home
+                window.location.replace('home.html');
+
+            } catch (error) {
+                console.error("Error logging in: ", error);
+                setLoading(false);
+                alert('เกิดข้อผิดพลาดในการเชื่อมต่อ กรุณาลองใหม่อีกครั้ง');
+            }
+        };
+
+        // Register Handler
+        window.handleRegister = async function () {
+            const empId = document.getElementById('reg_emp_id').value.trim();
+            const firstName = document.getElementById('reg_firstname').value.trim();
+            const lastName = document.getElementById('reg_lastname').value.trim();
+
+            if (!empId || !firstName || !lastName) {
+                alert('กรุณากรอกข้อมูลให้ครบถ้วนทุกช่อง');
+                return;
+            }
+
+            const fullName = `${firstName} ${lastName}`;
+            setLoading(true, 'กำลังลงทะเบียนและบันทึกข้อมูล...');
+
+            try {
+                // Check if employee ID already exists to prevent duplicates
+                const q = query(collection(db, "employees"), where("empId", "==", empId));
+                const querySnapshot = await getDocs(q);
+
+                if (!querySnapshot.empty) {
+                    // Emp ID already exists, ask if they want to log in instead
+                    setLoading(false);
+                    alert('รหัสพนักงานนี้ถูกลงทะเบียนไว้แล้ว กรุณาไปที่แท็บ "เข้าสู่ระบบ" เพื่อใช้งาน');
+                    switchTab('login');
+                    document.getElementById('login_emp_id').value = empId;
+                    return;
+                }
+
+                // Add new employee to Firestore
+                await addDoc(collection(db, "employees"), {
+                    empId: empId,
+                    name: fullName,
+                    createdAt: serverTimestamp()
+                });
+
+                // Save session right after successful registration
+                localStorage.setItem('driver_app_user', JSON.stringify({
+                    empId: empId,
+                    name: fullName
+                }));
+
+                // Success, redirect to home
+                window.location.replace('home.html');
+
+            } catch (error) {
+                console.error("Error registering: ", error);
+                setLoading(false);
+                alert('เกิดข้อผิดพลาดในการบันทึกข้อมูล กรุณาลองใหม่อีกครั้ง');
+            }
+        };
+
+        // Add enter key support
+        document.getElementById('login_emp_id').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') handleLogin();
+        });
+        document.getElementById('reg_lastname').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') handleRegister();
+        });
+    </script>
 </body>
 
 </html>

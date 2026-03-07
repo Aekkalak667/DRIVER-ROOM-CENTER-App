@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Driver Room Center App</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Auth Check -->
+    <script>
+        if (!localStorage.getItem('driver_app_user')) {
+            window.location.replace('index.html');
+        }
+    </script>
+</head>
+
+<body>
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header scale-in">
+            <div class="user-info">
+                <div class="avatar-container">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&auto=format&fit=crop&w=150&q=80"
+                        alt="User Profile" class="profile-pic">
+                    <span class="status-dot"></span>
+                </div>
+                <div class="greeting">
+                    <p class="greeting-text">ยินดีต้อนรับ,</p>
+                    <h2 class="user-name">คุณสมชาย ใจดี</h2>
+                </div>
+            </div>
+            <button class="notification-btn ripple-btn">
+                <i class="fa-regular fa-bell"></i>
+                <span class="badge pulse-anim">2</span>
+            </button>
+        </header>
+
+        <!-- Main Banner Ad/Gif -->
+        <div class="main-banner-container fade-in-up"
+            style="margin: 0 var(--spacing) 20px; border-radius: var(--radius-xl); overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.15);">
+            <img src="images/banner.gif" alt="Center Banner"
+                style="width: 100%; height: auto; display: block; object-fit: cover;">
+        </div>
+
+        <!-- Banner -->
+        <section class="banner glass-panel tilt-card fade-in-up" style="animation-delay: 0.1s;">
+            <div class="banner-bg-anim"></div>
+            <div class="banner-content">
+                <div class="banner-tag">ระบบจัดการข้อมูลพนักงานขับรถ</div>
+                <h1>DRIVER ROOM CENTER</h1>
+                <div class="date-chip">
+                    <i class="fa-regular fa-calendar-days"></i>
+                    <span id="currentDate">--/--/----</span>
+                </div>
+            </div>
+            <div class="banner-icon">
+                <i class="fa-solid fa-car"></i>
+            </div>
+        </section>
+
+        <!-- Main Menu -->
+        <main class="menu-section">
+            <div class="section-header fade-in-up" style="animation-delay: 0.1s;">
+                <h3 class="section-title">เมนูหลัก <span class="badge-new">ใหม่</span></h3>
+                <p class="section-desc">เลือกรายการที่คุณต้องการทำรายการ</p>
+            </div>
+
+            <div class="menu-grid">
+                <!-- Menu 1 -->
+                <button class="menu-card glass-panel ripple-card fade-in-up" data-menu="daily-check"
+                    style="animation-delay: 0.2s;" onclick="selectMenu(this)">
+                    <div class="icon-wrapper glass-icon" style="--card-color: #3b82f6;">
+                        <i class="fa-solid fa-clipboard-check"></i>
+                    </div>
+                    <div class="menu-text">
+                        <h4>เช็ครถประจำวัน</h4>
+                        <p>บันทึกการตรวจสภาพก่อนใช้งาน</p>
+                    </div>
+                    <div class="arrow-icon"><i class="fa-solid fa-arrow-right"></i></div>
+                </button>
+
+                <!-- Menu 2 -->
+                <button class="menu-card glass-panel ripple-card fade-in-up" data-menu="maintenance"
+                    style="animation-delay: 0.3s;" onclick="selectMenu(this)">
+                    <div class="icon-wrapper glass-icon" style="--card-color: #f59e0b;">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                    </div>
+                    <div class="menu-text">
+                        <h4>แจ้งเช็คระยะ</h4>
+                        <p>ตรวจสอบและแจ้งเตือนเข้าศูนย์</p>
+                    </div>
+                    <div class="arrow-icon"><i class="fa-solid fa-arrow-right"></i></div>
+                </button>
+
+                <!-- Menu 3 -->
+                <button class="menu-card glass-panel ripple-card fade-in-up" data-menu="mileage-lcb"
+                    style="animation-delay: 0.4s;" onclick="selectMenu(this)">
+                    <div class="icon-wrapper glass-icon" style="--card-color: #10b981;">
+                        <i class="fa-solid fa-gauge-high"></i>
+                    </div>
+                    <div class="menu-text">
+                        <h4>เลขไมล์ (LCB)</h4>
+                        <p>บันทึกเลขไมล์ทุกวันที่ 25</p>
+                    </div>
+                    <div class="arrow-icon"><i class="fa-solid fa-arrow-right"></i></div>
+                </button>
+
+                <!-- Menu 4 -->
+                <button class="menu-card glass-panel ripple-card fade-in-up" data-menu="mileage-fyi"
+                    style="animation-delay: 0.5s;" onclick="selectMenu(this)">
+                    <div class="icon-wrapper glass-icon" style="--card-color: #8b5cf6;">
+                        <i class="fa-solid fa-road"></i>
+                    </div>
+                    <div class="menu-text">
+                        <h4>เลขไมล์ (FYI & EA)</h4>
+                        <p>บันทึกเลขไมล์ทุกวันที่ 25</p>
+                    </div>
+                    <div class="arrow-icon"><i class="fa-solid fa-arrow-right"></i></div>
+                </button>
+
+                <!-- Menu 5 -->
+                <button class="menu-card glass-panel ripple-card fade-in-up" data-menu="ev-charge"
+                    style="animation-delay: 0.6s;" onclick="selectMenu(this)">
+                    <div class="icon-wrapper glass-icon" style="--card-color: #06b6d4;">
+                        <i class="fa-solid fa-charging-station"></i>
+                    </div>
+                    <div class="menu-text">
+                        <h4>บริการสถานีชาร์จไฟ</h4>
+                        <p>บันทึกข้อมูลการชาร์จรถ EV</p>
+                    </div>
+                    <div class="arrow-icon"><i class="fa-solid fa-arrow-right"></i></div>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav glass-panel slide-up">
+        <div class="active-indicator"></div>
+        <a href="#" class="nav-item active ripple-icon" onclick="switchNav(event, this); switchToPage(0)">
+            <i class="fa-solid fa-border-all"></i>
+            <span>หน้าหลัก</span>
+        </a>
+        <a href="#" class="nav-item ripple-icon" onclick="switchNav(event, this); switchToPage(1)"
+            style="overflow: hidden;">
+            <i class="fa-solid fa-bell"></i>
+            <span>แจ้งเตือน</span>
+        </a>
+        <a href="#" class="nav-item ripple-icon" onclick="switchNav(event, this); switchToPage(2)"
+            style="overflow: hidden;">
+            <i class="fa-solid fa-user-astronaut"></i>
+            <span>โปรไฟล์</span>
+        </a>
+    </nav>
+
+    <!-- Overlay Form -->
+    <div class="overlay" id="formOverlay">
+        <div class="form-drawer">
+            <div class="drawer-header">
+                <div class="drawer-title-wrapper">
+                    <div class="drawer-icon"><i class="fa-solid fa-pen-to-square"></i></div>
+                    <h3 id="drawerTitle">หัวข้อเมนู</h3>
+                </div>
+                <button class="close-btn ripple-btn" onclick="closeForm()">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="drawer-body">
+                <div class="mockup-form" id="formContent">
+                    <!-- Content loaded dynamically from pages/ folder -->
+                    <div style="text-align: center; padding: 40px 0; color: var(--text-muted);">
+                        <i class="fa-solid fa-circle-notch fa-spin" style="font-size: 2rem; margin-bottom: 12px;"></i>
+                        <p>กำลังโหลด...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification Page Overlay -->
+    <div class="page-overlay off-right" id="notificationOverlay">
+        <div class="profile-page">
+            <!-- Notification Title -->
+            <div style="text-align: center; padding: 24px 0 8px;">
+                <h3
+                    style="font-family: 'Prompt', sans-serif; font-size: 1.2rem; font-weight: 600; color: var(--text-main);">
+                    แจ้งเตือน</h3>
+                <p style="color: var(--text-muted); font-size: 0.85rem; margin-top: 4px;">พนักงานที่ยังไม่เช็ครถประจำวัน
+                </p>
+            </div>
+
+            <!-- Warning Banner -->
+            <div
+                style="display: flex; align-items: center; gap: 8px; padding: 12px 16px; background: rgba(239,68,68,0.08); border-radius: 14px; margin-bottom: 20px;">
+                <i class="fa-solid fa-triangle-exclamation" style="color: #ef4444; font-size: 1.1rem;"></i>
+                <span
+                    style="font-weight: 500; color: #ef4444; font-size: 0.9rem;">วันนี้ยังมีพนักงานที่ยังไม่เช็ครถ</span>
+            </div>
+
+            <!-- Notification Cards -->
+            <div style="display: flex; flex-direction: column; gap: 12px;">
+                <!-- Person 1 -->
+                <div class="glass-panel" style="padding: 16px; border-radius: 16px; border-left: 4px solid #ef4444;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div
+                            style="width: 44px; height: 44px; border-radius: 50%; background: rgba(239,68,68,0.12); display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-user" style="color: #ef4444;"></i>
+                        </div>
+                        <div style="flex: 1;">
+                            <h4
+                                style="font-family: 'Prompt'; font-weight: 500; font-size: 0.95rem; color: var(--text-main);">
+                                คุณสมศักดิ์ รักดี</h4>
+                            <p style="font-size: 0.8rem; color: var(--text-muted);">ทะเบียน: กก 1234 • MMTH</p>
+                        </div>
+                        <span
+                            style="font-size: 0.75rem; color: #ef4444; font-weight: 600; background: rgba(239,68,68,0.1); padding: 4px 10px; border-radius: 20px;">ยังไม่เช็ค</span>
+                    </div>
+                </div>
+
+                <!-- Person 2 -->
+                <div class="glass-panel" style="padding: 16px; border-radius: 16px; border-left: 4px solid #ef4444;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div
+                            style="width: 44px; height: 44px; border-radius: 50%; background: rgba(239,68,68,0.12); display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-user" style="color: #ef4444;"></i>
+                        </div>
+                        <div style="flex: 1;">
+                            <h4
+                                style="font-family: 'Prompt'; font-weight: 500; font-size: 0.95rem; color: var(--text-main);">
+                                คุณวิชัย ใจดี</h4>
+                            <p style="font-size: 0.8rem; color: var(--text-muted);">ทะเบียน: ขข 5678 • SMS</p>
+                        </div>
+                        <span
+                            style="font-size: 0.75rem; color: #ef4444; font-weight: 600; background: rgba(239,68,68,0.1); padding: 4px 10px; border-radius: 20px;">ยังไม่เช็ค</span>
+                    </div>
+                </div>
+
+                <!-- Person 3 -->
+                <div class="glass-panel" style="padding: 16px; border-radius: 16px; border-left: 4px solid #f59e0b;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div
+                            style="width: 44px; height: 44px; border-radius: 50%; background: rgba(245,158,11,0.12); display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-user" style="color: #f59e0b;"></i>
+                        </div>
+                        <div style="flex: 1;">
+                            <h4
+                                style="font-family: 'Prompt'; font-weight: 500; font-size: 0.95rem; color: var(--text-main);">
+                                คุณประยุทธ์ สุขสันต์</h4>
+                            <p style="font-size: 0.8rem; color: var(--text-muted);">ทะเบียน: คค 9012 • SO</p>
+                        </div>
+                        <span
+                            style="font-size: 0.75rem; color: #f59e0b; font-weight: 600; background: rgba(245,158,11,0.1); padding: 4px 10px; border-radius: 20px;">รอดำเนินการ</span>
+                    </div>
+                </div>
+
+                <!-- Person 4 - checked -->
+                <div class="glass-panel"
+                    style="padding: 16px; border-radius: 16px; border-left: 4px solid #10b981; opacity: 0.7;">
+                    <div style="display: flex; align-items: center; gap: 12px;">
+                        <div
+                            style="width: 44px; height: 44px; border-radius: 50%; background: rgba(16,185,129,0.12); display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-user-check" style="color: #10b981;"></i>
+                        </div>
+                        <div style="flex: 1;">
+                            <h4
+                                style="font-family: 'Prompt'; font-weight: 500; font-size: 0.95rem; color: var(--text-main);">
+                                คุณสมชาย ใจดี</h4>
+                            <p style="font-size: 0.8rem; color: var(--text-muted);">ทะเบียน: งง 3456 • MMTH</p>
+                        </div>
+                        <span
+                            style="font-size: 0.75rem; color: #10b981; font-weight: 600; background: rgba(16,185,129,0.1); padding: 4px 10px; border-radius: 20px;">เช็คแล้ว</span>
+                    </div>
+                </div>
+            </div>
+
+            <p style="text-align: center; color: var(--text-muted); font-size: 0.8rem; margin-top: 24px;">* ข้อมูลจำลอง
+                รอเชื่อมต่อระบบจริง</p>
+        </div>
+    </div>
+
+    <div class="page-overlay off-right" id="profileOverlay">
+        <div class="profile-page">
+            <!-- Profile Title -->
+            <div style="text-align: center; padding: 24px 0 8px;">
+                <h3
+                    style="font-family: 'Prompt', sans-serif; font-size: 1.2rem; font-weight: 600; color: var(--text-main);">
+                    โปรไฟล์</h3>
+            </div>
+
+            <!-- Profile Avatar Section -->
+            <div class="profile-avatar-section">
+                <div class="profile-avatar-wrapper">
+                    <img src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
+                        alt="Profile" class="profile-avatar">
+                    <div class="profile-avatar-badge">
+                        <i class="fa-solid fa-camera"></i>
+                    </div>
+                </div>
+                <h2 class="profile-name">คุณสมชาย ใจดี</h2>
+                <p class="profile-role">พนักงานขับรถ</p>
+            </div>
+
+            <!-- Profile Stats -->
+            <div class="profile-stats">
+                <div class="stat-card glass-panel">
+                    <i class="fa-solid fa-car" style="color: #3b82f6;"></i>
+                    <span class="stat-value">128</span>
+                    <span class="stat-label">เที่ยวงาน</span>
+                </div>
+                <div class="stat-card glass-panel">
+                    <i class="fa-solid fa-road" style="color: #10b981;"></i>
+                    <span class="stat-value">5,420</span>
+                    <span class="stat-label">กม.</span>
+                </div>
+                <div class="stat-card glass-panel">
+                    <i class="fa-solid fa-star" style="color: #f59e0b;"></i>
+                    <span class="stat-value">4.9</span>
+                    <span class="stat-label">คะแนน</span>
+                </div>
+            </div>
+
+            <!-- Profile Menu Items -->
+            <div class="profile-menu">
+                <div class="profile-menu-item glass-panel ripple-card">
+                    <div class="profile-menu-icon" style="background: rgba(59,130,246,0.15); color: #3b82f6;">
+                        <i class="fa-solid fa-id-card"></i>
+                    </div>
+                    <div class="profile-menu-text">
+                        <h4>ข้อมูลส่วนตัว</h4>
+                        <p>ชื่อ, เบอร์โทร, อีเมล</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right profile-menu-arrow"></i>
+                </div>
+                <div class="profile-menu-item glass-panel ripple-card">
+                    <div class="profile-menu-icon" style="background: rgba(16,185,129,0.15); color: #10b981;">
+                        <i class="fa-solid fa-car-side"></i>
+                    </div>
+                    <div class="profile-menu-text">
+                        <h4>รถที่รับผิดชอบ</h4>
+                        <p>ทะเบียน, รุ่นรถ, บริษัท</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right profile-menu-arrow"></i>
+                </div>
+                <div class="profile-menu-item glass-panel ripple-card">
+                    <div class="profile-menu-icon" style="background: rgba(139,92,246,0.15); color: #8b5cf6;">
+                        <i class="fa-solid fa-file-lines"></i>
+                    </div>
+                    <div class="profile-menu-text">
+                        <h4>ประวัติการทำรายการ</h4>
+                        <p>รายการที่บันทึกไว้ทั้งหมด</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right profile-menu-arrow"></i>
+                </div>
+                <div class="profile-menu-item glass-panel ripple-card">
+                    <div class="profile-menu-icon" style="background: rgba(245,158,11,0.15); color: #f59e0b;">
+                        <i class="fa-solid fa-bell"></i>
+                    </div>
+                    <div class="profile-menu-text">
+                        <h4>การแจ้งเตือน</h4>
+                        <p>ตั้งค่าการรับแจ้งเตือน</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right profile-menu-arrow"></i>
+                </div>
+                <div class="profile-menu-item glass-panel ripple-card" onclick="window.location.href='admin.html'">
+                    <div class="profile-menu-icon" style="background: rgba(15,23,42,0.15); color: #0f172a;">
+                        <i class="fa-solid fa-users-gear"></i>
+                    </div>
+                    <div class="profile-menu-text">
+                        <h4>จัดการข้อมูลพนักงาน (Admin)</h4>
+                        <p>เพิ่ม แก้ไข ลบ ข้อมูลพนักงาน</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right profile-menu-arrow"></i>
+                </div>
+                <!-- /Admin Placeholder -->
+
+                <div class="profile-menu-item glass-panel ripple-card" onclick="logout()">
+                    <div class="profile-menu-icon" style="background: rgba(239,68,68,0.15); color: #ef4444;">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                    </div>
+                    <div class="profile-menu-text">
+                        <h4>ออกจากระบบ</h4>
+                        <p>ลงชื่อออกจากบัญชี</p>
+                    </div>
+                    <i class="fa-solid fa-chevron-right profile-menu-arrow"></i>
+                </div>
+            </div>
+
+            <p style="text-align: center; color: var(--text-muted); font-size: 0.8rem; margin-top: 24px;">Driver Room
+                Center App v1.0</p>
+        </div>
+    </div>
+
+    <!-- Custom Cursor (optional touch of modern web) -->
+    <div class="cursor-glow"></div>
+
+    <!-- Firebase SDK & Config -->
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/script.js"></script>
+
+    <script>
+        // Update user names on UI
+        document.addEventListener('DOMContentLoaded', () => {
+            try {
+                const userData = JSON.parse(localStorage.getItem('driver_app_user'));
+                if (userData && userData.name) {
+                    const nameElements = document.querySelectorAll('.user-name, .profile-name');
+                    nameElements.forEach(el => el.textContent = userData.name);
+                }
+            } catch (e) { console.error("Error parsing user data", e); }
+        });
+
+        // Logout logic
+        window.logout = function () {
+            if (confirm("คุณแน่ใจหรือไม่ว่าต้องการออกจากระบบ?")) {
+                localStorage.removeItem('driver_app_user');
+                window.location.replace('index.html');
+            }
+        };
+    </script>
+</body>
+
+</html>
