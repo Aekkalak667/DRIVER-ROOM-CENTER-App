@@ -377,7 +377,8 @@
                     </div>
                     <i class="fa-solid fa-chevron-right profile-menu-arrow"></i>
                 </div>
-                <div class="profile-menu-item glass-panel ripple-card" onclick="window.location.href='admin.html'">
+                <div class="profile-menu-item glass-panel ripple-card" id="adminMenuBtn" style="display: none;"
+                    onclick="window.location.href='admin.html'">
                     <div class="profile-menu-icon" style="background: rgba(15,23,42,0.15); color: #0f172a;">
                         <i class="fa-solid fa-users-gear"></i>
                     </div>
@@ -413,14 +414,38 @@
     <script type="module" src="js/firebase-config.js"></script>
     <script type="module" src="js/script.js"></script>
 
-    <script>
-        // Update user names on UI
-        document.addEventListener('DOMContentLoaded', () => {
+    <script type="module">
+        import { db } from './js/firebase-config.js';
+        import { collection, query, where, getDocs, addDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // Update user names on UI and Check Admin Status
+        document.addEventListener('DOMContentLoaded', async () => {
             try {
                 const userData = JSON.parse(localStorage.getItem('driver_app_user'));
                 if (userData && userData.name) {
                     const nameElements = document.querySelectorAll('.user-name, .profile-name');
                     nameElements.forEach(el => el.textContent = userData.name);
+
+                    // Check Admin Rights
+                    if (userData.empId) {
+                        try {
+                            if (!localStorage.getItem('admin_seeded_123456')) {
+                                const seedQ = query(collection(db, "admins"), where("empId", "==", "123456"));
+                                const seedSnap = await getDocs(seedQ);
+                                if (seedSnap.empty) {
+                                    await addDoc(collection(db, "admins"), { empId: "123456" });
+                                }
+                                localStorage.setItem('admin_seeded_123456', 'true');
+                            }
+                        } catch (e) { console.error("Seed error", e); }
+
+                        const q = query(collection(db, "admins"), where("empId", "==", userData.empId));
+                        const querySnapshot = await getDocs(q);
+                        if (!querySnapshot.empty) {
+                            // User is an admin, show the button
+                            document.getElementById('adminMenuBtn').style.display = 'flex';
+                        }
+                    }
                 }
             } catch (e) { console.error("Error parsing user data", e); }
         });

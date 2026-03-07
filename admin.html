@@ -18,6 +18,59 @@
         body {
             background-color: #f8fafc;
         }
+
+        /* Tabs */
+        .tab-nav {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(10px);
+            padding: 6px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.8);
+        }
+
+        .tab-btn {
+            flex: 1;
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-family: 'Prompt', sans-serif;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);
+        }
+
+        .tab-pane {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
 </head>
 
@@ -53,86 +106,153 @@
         <section class="page-section active fade-in-up" style="display: block;">
 
             <!-- Tab Navigation -->
-            <div
-                style="display: flex; gap: 8px; margin-bottom: 24px; background: rgba(255,255,255,0.6); backdrop-filter: blur(10px); padding: 6px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.8);">
-                <button
-                    style="flex: 1; padding: 14px; border-radius: 12px; border: none; background: var(--primary); color: white; font-family: 'Prompt', sans-serif; font-weight: 600; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);">จัดการพนักงาน</button>
-                <button
-                    style="flex: 1; padding: 14px; border-radius: 12px; border: none; background: transparent; color: var(--text-muted); font-family: 'Prompt', sans-serif; font-weight: 500;"
-                    onclick="alert('ฟีเจอร์นี้กำลังพัฒนา')">ตั้งค่าอื่นๆ</button>
+            <div class="tab-nav">
+                <button class="tab-btn active" onclick="switchAdminTab('employee')">จัดการพนักงาน</button>
+                <button class="tab-btn" onclick="switchAdminTab('admin')">จัดการสิทธิ์ Admin</button>
             </div>
 
-            <!-- Add Employee Card -->
-            <div class="glass-panel"
-                style="padding: 24px; border-radius: 20px; margin-bottom: 30px; position: relative; overflow: hidden;">
-                <!-- Decorative element -->
-                <div
-                    style="position: absolute; top: -20px; right: -20px; font-size: 100px; color: rgba(79, 70, 229, 0.05); transform: rotate(-15deg); pointer-events: none;">
-                    <i class="fa-solid fa-user-plus"></i>
-                </div>
+            <!-- EMPLOYEE PANE -->
+            <div id="employee-pane" class="tab-pane active">
 
-                <h3
-                    style="margin-bottom: 20px; display: flex; align-items: center; gap: 10px; color: var(--text-main); font-family: 'Prompt', sans-serif;">
+                <!-- Add Employee Card -->
+                <div class="glass-panel"
+                    style="padding: 24px; border-radius: 20px; margin-bottom: 30px; position: relative; overflow: hidden;">
+                    <!-- Decorative element -->
                     <div
-                        style="width: 36px; height: 36px; border-radius: 10px; background: rgba(79,70,229,0.1); color: var(--primary); display: flex; align-items: center; justify-content: center;">
-                        <i class="fa-solid fa-plus"></i>
+                        style="position: absolute; top: -20px; right: -20px; font-size: 100px; color: rgba(79, 70, 229, 0.05); transform: rotate(-15deg); pointer-events: none;">
+                        <i class="fa-solid fa-user-plus"></i>
                     </div>
-                    เพิ่มพนักงานใหม่
-                </h3>
 
-                <div class="form-group">
-                    <label>รหัสพนักงาน (ID)</label>
-                    <div class="input-icon-wrapper">
-                        <i class="fa-solid fa-hashtag input-icon"></i>
-                        <input type="text" id="admin_emp_id" class="form-control" placeholder="เช่น 00123" required
-                            style="padding: 14px 14px 14px 44px; border-radius: 12px;">
-                    </div>
-                </div>
-
-                <div class="form-group" style="margin-top: 16px;">
-                    <label>ชื่อ-นามสกุล / ชื่อเล่น</label>
-                    <div class="input-icon-wrapper">
-                        <i class="fa-regular fa-id-card input-icon"></i>
-                        <input type="text" id="admin_emp_name" class="form-control" placeholder="ระบุชื่อพนักงาน"
-                            required style="padding: 14px 14px 14px 44px; border-radius: 12px;">
-                    </div>
-                </div>
-
-                <button type="button" class="btn-submit ripple-btn" onclick="submitNewEmployee()"
-                    style="margin-top: 24px; padding: 16px; border-radius: 14px; font-size: 1.05rem;">
-                    <i class="fa-solid fa-cloud-arrow-up"></i> บันทึกข้อมูลขึ้นระบบ
-                </button>
-            </div>
-
-            <!-- Employee List Card -->
-            <div>
-                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 16px;">
-                    <h3 style="margin: 0; color: var(--text-main); font-family: 'Prompt', sans-serif;">รายชื่อทั้งหมด
+                    <h3
+                        style="margin-bottom: 20px; display: flex; align-items: center; gap: 10px; color: var(--text-main); font-family: 'Prompt', sans-serif;">
+                        <div
+                            style="width: 36px; height: 36px; border-radius: 10px; background: rgba(79,70,229,0.1); color: var(--primary); display: flex; align-items: center; justify-content: center;">
+                            <i class="fa-solid fa-plus"></i>
+                        </div>
+                        เพิ่มพนักงานใหม่
                     </h3>
-                    <div class="badge-new" id="emp_count"
-                        style="background: var(--primary); color: white; padding: 6px 12px; border-radius: 20px;">0 คน
+
+                    <div class="form-group">
+                        <label>รหัสพนักงาน (ID)</label>
+                        <div class="input-icon-wrapper">
+                            <i class="fa-solid fa-hashtag input-icon"></i>
+                            <input type="text" id="admin_emp_id" class="form-control" placeholder="เช่น 00123" required
+                                style="padding: 14px 14px 14px 44px; border-radius: 12px;">
+                        </div>
                     </div>
+
+                    <div class="form-group" style="margin-top: 16px;">
+                        <label>ชื่อ-นามสกุล / ชื่อเล่น</label>
+                        <div class="input-icon-wrapper">
+                            <i class="fa-regular fa-id-card input-icon"></i>
+                            <input type="text" id="admin_emp_name" class="form-control" placeholder="ระบุชื่อพนักงาน"
+                                required style="padding: 14px 14px 14px 44px; border-radius: 12px;">
+                        </div>
+                    </div>
+
+                    <button type="button" class="btn-submit ripple-btn" onclick="submitNewEmployee()"
+                        style="margin-top: 24px; padding: 16px; border-radius: 14px; font-size: 1.05rem;">
+                        <i class="fa-solid fa-cloud-arrow-up"></i> บันทึกข้อมูลขึ้นระบบ
+                    </button>
                 </div>
 
-                <!-- Search bar -->
-                <div class="input-icon-wrapper" style="margin-bottom: 20px;">
-                    <i class="fa-solid fa-search input-icon" style="color: var(--text-muted);"></i>
-                    <input type="text" class="form-control glass-panel" placeholder="ค้นหาชื่อ หรือ รหัสพนักงาน..."
-                        style="padding: 14px 14px 14px 44px; border-radius: 14px; border: none; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(0,0,0,0.03);"
-                        onkeyup="filterEmployees(this.value)">
-                </div>
-
-                <div id="employeeListContainer"
-                    style="display: flex; flex-direction: column; gap: 12px; padding-bottom: 20px;">
-                    <!-- Loading State -->
+                <!-- Employee List Card -->
+                <div>
                     <div
-                        style="text-align: center; padding: 40px 0; color: var(--text-muted); background: white; border-radius: 16px; border: 1px dashed #cbd5e1;">
-                        <i class="fa-solid fa-circle-notch fa-spin fa-2x"
-                            style="color: var(--primary); margin-bottom: 12px;"></i>
-                        <br>กำลังดึงข้อมูลจาก Cloud...
+                        style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 16px;">
+                        <h3 style="margin: 0; color: var(--text-main); font-family: 'Prompt', sans-serif;">
+                            รายชื่อทั้งหมด
+                        </h3>
+                        <div class="badge-new" id="emp_count"
+                            style="background: var(--primary); color: white; padding: 6px 12px; border-radius: 20px;">0
+                            คน
+                        </div>
                     </div>
-                </div>
-            </div>
+
+                    <!-- Search bar -->
+                    <div class="input-icon-wrapper" style="margin-bottom: 20px;">
+                        <i class="fa-solid fa-search input-icon" style="color: var(--text-muted);"></i>
+                        <input type="text" class="form-control glass-panel" placeholder="ค้นหาชื่อ หรือ รหัสพนักงาน..."
+                            style="padding: 14px 14px 14px 44px; border-radius: 14px; border: none; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(0,0,0,0.03);"
+                            onkeyup="filterEmployees(this.value)">
+                    </div>
+
+                    <div id="employeeListContainer"
+                        style="display: flex; flex-direction: column; gap: 12px; padding-bottom: 20px;">
+                        <!-- Loading State -->
+                        <div
+                            style="text-align: center; padding: 40px 0; color: var(--text-muted); background: white; border-radius: 16px; border: 1px dashed #cbd5e1;">
+                            <i class="fa-solid fa-circle-notch fa-spin fa-2x"
+                                style="color: var(--primary); margin-bottom: 12px;"></i>
+                            <br>กำลังดึงข้อมูลจาก Cloud...
+                        </div>
+                    </div>
+                </div> <!-- End Employee Pane -->
+
+                <!-- ADMIN PANE -->
+                <div id="admin-pane" class="tab-pane">
+
+                    <!-- Add Admin Card -->
+                    <div class="glass-panel"
+                        style="padding: 24px; border-radius: 20px; margin-bottom: 30px; position: relative; overflow: hidden; border: 1px solid rgba(16, 185, 129, 0.3);">
+                        <!-- Decorative element -->
+                        <div
+                            style="position: absolute; top: -20px; right: -20px; font-size: 100px; color: rgba(16, 185, 129, 0.05); transform: rotate(-15deg); pointer-events: none;">
+                            <i class="fa-solid fa-shield-virus"></i>
+                        </div>
+
+                        <h3
+                            style="margin-bottom: 20px; display: flex; align-items: center; gap: 10px; color: var(--text-main); font-family: 'Prompt', sans-serif;">
+                            <div
+                                style="width: 36px; height: 36px; border-radius: 10px; background: rgba(16,185,129,0.1); color: #10b981; display: flex; align-items: center; justify-content: center;">
+                                <i class="fa-solid fa-user-shield"></i>
+                            </div>
+                            เพิ่มผู้ดูแลระบบ (Admin)
+                        </h3>
+
+                        <p style="font-size: 0.85rem; color: #ef4444; margin-bottom: 16px;">*
+                            ผู้ที่มีสิทธิ์นี้จะสามารถลบพนักงานและแก้ไขข้อมูลแอดมินคนอื่นได้</p>
+
+                        <div class="form-group">
+                            <label>รหัสพนักงาน (ID)</label>
+                            <div class="input-icon-wrapper">
+                                <i class="fa-solid fa-hashtag input-icon"></i>
+                                <input type="text" id="admin_role_emp_id" class="form-control"
+                                    placeholder="ระบุรหัสพนักงานที่ต้องการให้สิทธิ์" required
+                                    style="padding: 14px 14px 14px 44px; border-radius: 12px;">
+                            </div>
+                        </div>
+
+                        <button type="button" class="btn-submit ripple-btn" onclick="submitNewAdminRole()"
+                            style="margin-top: 24px; padding: 16px; border-radius: 14px; font-size: 1.05rem; background: #10b981; box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);">
+                            <i class="fa-solid fa-check-to-slot"></i> มอบสิทธิ์แอดมิน
+                        </button>
+                    </div>
+
+                    <!-- Admin List Card -->
+                    <div>
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 16px;">
+                            <h3 style="margin: 0; color: var(--text-main); font-family: 'Prompt', sans-serif;">
+                                แอดมินทั้งหมด</h3>
+                            <div class="badge-new" id="admin_role_count"
+                                style="background: #10b981; color: white; padding: 6px 12px; border-radius: 20px;">0 คน
+                            </div>
+                        </div>
+
+                        <div id="adminRoleListContainer"
+                            style="display: flex; flex-direction: column; gap: 12px; padding-bottom: 20px;">
+                            <!-- Loading State -->
+                            <div
+                                style="text-align: center; padding: 40px 0; color: var(--text-muted); background: white; border-radius: 16px; border: 1px dashed #cbd5e1;">
+                                <i class="fa-solid fa-circle-notch fa-spin fa-2x"
+                                    style="color: #10b981; margin-bottom: 12px;"></i>
+                                <br>กำลังดึงข้อมูล...
+                            </div>
+                        </div>
+                    </div>
+
+                </div> <!-- End Admin Pane -->
 
         </section>
     </div>
@@ -140,20 +260,50 @@
     <!-- Firebase SDK & Config -->
     <script type="module" src="js/firebase-config.js"></script>
     <script type="module" src="js/script.js"></script>
-    <script>
-        // Start loading employees automatically
+    <script type="module">
+        import { db } from './js/firebase-config.js';
+        import { collection, query, where, getDocs, addDoc, deleteDoc, doc, onSnapshot, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+        // 1. Authorize Admin Access
+        async function checkAdminAccess() {
+            const userData = JSON.parse(localStorage.getItem('driver_app_user'));
+            if (!userData || !userData.empId) {
+                window.location.replace('home.html');
+                return;
+            }
+
+            const q = query(collection(db, "admins"), where("empId", "==", userData.empId));
+            const querySnapshot = await getDocs(q);
+            if (querySnapshot.empty) {
+                alert("คุณไม่มีสิทธิ์เข้าถึงหน้านี้");
+                window.location.replace('home.html');
+                return;
+            }
+
+            // If authorized, load tabs
+            loadAdmins();
+        }
+
         window.onload = function () {
+            checkAdminAccess();
             setTimeout(() => {
                 if (typeof window.loadEmployees === 'function') {
                     window.loadEmployees();
-                } else {
-                    console.warn("loadEmployees not found on window");
                 }
             }, 500);
         };
 
-        // Basic UI filter implementation
-        function filterEmployees(term) {
+        // Tab Switching
+        window.switchAdminTab = function (tabName) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+
+            document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+            document.getElementById(tabName + '-pane').classList.add('active');
+        };
+
+        // Basic UI filter implementation for employees
+        window.filterEmployees = function (term) {
             term = term.toLowerCase();
             const items = document.querySelectorAll('.employee-item');
 
@@ -165,7 +315,97 @@
                     item.style.display = 'none';
                 }
             });
-        }
+        };
+
+        // --- Admins Management ---
+        window.loadAdmins = function () {
+            const container = document.getElementById('adminRoleListContainer');
+            const countLabel = document.getElementById('admin_role_count');
+
+            const q = query(collection(db, "admins"));
+            onSnapshot(q, (querySnapshot) => {
+                container.innerHTML = '';
+                let count = 0;
+
+                if (querySnapshot.empty) {
+                    container.innerHTML = '<div style="text-align:center; padding: 20px; border: 1px dashed #ccc; border-radius: 12px;">ไม่พบข้อมูลแอดมิน</div>';
+                    countLabel.textContent = '0 คน';
+                    return;
+                }
+
+                querySnapshot.forEach((docSnap) => {
+                    const data = docSnap.data();
+                    count++;
+
+                    const item = document.createElement('div');
+                    item.className = 'glass-panel employee-item';
+                    item.style.cssText = 'padding: 16px; border-radius: 16px; display: flex; align-items: center; justify-content: space-between; border-left: 4px solid #10b981; animation: fadeIn 0.3s ease;';
+                    item.innerHTML = `
+                        <div style="display: flex; align-items: center; gap: 12px;">
+                            <div style="width: 44px; height: 44px; border-radius: 50%; background: rgba(16,185,129,0.12); display: flex; align-items: center; justify-content: center; color: #10b981; font-weight: bold; font-family: Outfit;">
+                                <i class="fa-solid fa-user-shield"></i>
+                            </div>
+                            <div>
+                                <h4 style="margin: 0; font-family: 'Prompt', sans-serif; font-size: 1rem; color: var(--text-main);">รหัส: ${data.empId}</h4>
+                                <p style="margin: 4px 0 0 0; font-size: 0.8rem; color: var(--text-muted);"><i class="fa-solid fa-shield-check" style="color: #10b981; margin-right: 4px;"></i> สิทธิ์: Admin เต็มรูปแบบ</p>
+                            </div>
+                        </div>
+                        <button class="delete-btn" onclick="deleteAdmin('${docSnap.id}', '${data.empId}')" style="background: rgba(239,68,68,0.1); border: none; width: 36px; height: 36px; border-radius: 10px; color: #ef4444; cursor: pointer; transition: all 0.2s;">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    `;
+                    container.appendChild(item);
+                });
+
+                countLabel.textContent = count + ' คน';
+            }, (error) => {
+                console.error("Error fetching admins:", error);
+                container.innerHTML = '<div style="color:red; text-align:center;">เกิดข้อผิดพลาดในการโหลดข้อมูล</div>';
+            });
+        };
+
+        window.submitNewAdminRole = async function () {
+            const empId = document.getElementById('admin_role_emp_id').value.trim();
+            if (!empId) {
+                alert("กรุณาระบุรหัสพนักงาน");
+                return;
+            }
+
+            try {
+                // Check if already exist
+                const q = query(collection(db, "admins"), where("empId", "==", empId));
+                const snap = await getDocs(q);
+                if (!snap.empty) {
+                    alert('รหัสพนักงานนี้มีสิทธิ์แอดมินอยู่แล้ว');
+                    return;
+                }
+
+                // Add Admin
+                await addDoc(collection(db, "admins"), {
+                    empId: empId,
+                    createdAt: serverTimestamp()
+                });
+
+                document.getElementById('admin_role_emp_id').value = '';
+                alert("เพิ่มสิทธิ์ Admin สำเร็จ!");
+
+            } catch (error) {
+                console.error("Error adding admin:", error);
+                alert("เกิดข้อผิดพลาดในการเพิ่มสิทธิ์");
+            }
+        };
+
+        window.deleteAdmin = async function (docId, empId) {
+            if (confirm(`คุณแน่ใจหรือไม่ที่จะลบสิทธิ์ Admin รหัส: ${empId} ?`)) {
+                try {
+                    await deleteDoc(doc(db, "admins", docId));
+                } catch (error) {
+                    console.error("Error deleting admin: ", error);
+                    alert("เกิดข้อผิดพลาดในการลบสิทธิ์");
+                }
+            }
+        };
+
     </script>
 </body>
 
