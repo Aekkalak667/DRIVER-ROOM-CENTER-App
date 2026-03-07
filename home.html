@@ -17,93 +17,7 @@
 
     <style>
         #adminMenuBtn {
-            position: relative;
             display: none;
-            /* Height lock to avoid blowout */
-            height: 80px !important;
-            width: 100% !important;
-            flex: none !important;
-            overflow: hidden !important;
-            cursor: pointer;
-
-            /* Admin Premium Styling */
-            background: linear-gradient(135deg, #4338ca 0%, #6366f1 100%) !important;
-            border: 1px solid rgba(255, 255, 255, 0.3) !important;
-            box-shadow: 0 8px 25px rgba(67, 56, 202, 0.4) !important;
-
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        /* Ensure content stays above effects and doesn't collapse */
-        #adminMenuBtn>* {
-            position: relative;
-            z-index: 5 !important;
-        }
-
-        #adminMenuBtn .profile-menu-text {
-            color: white !important;
-            flex: 1 !important;
-            /* Ensure it grows and pushes the arrow */
-        }
-
-        #adminMenuBtn .profile-menu-text h4 {
-            color: white !important;
-            margin: 0 !important;
-        }
-
-        #adminMenuBtn .profile-menu-text p {
-            color: rgba(255, 255, 255, 0.8) !important;
-            margin: 0 !important;
-        }
-
-        #adminMenuBtn .profile-menu-arrow {
-            color: rgba(255, 255, 255, 0.7) !important;
-        }
-
-        #adminMenuBtn:active {
-            transform: scale(0.97) !important;
-        }
-
-        /* Premium effects (Safe for layout) */
-        #adminMenuBtn::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
-            background-size: 10px 10px;
-            pointer-events: none;
-            z-index: 1;
-        }
-
-        #adminMenuBtn::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -150%;
-            width: 80%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transform: skewX(-20deg);
-            animation: shine-sweep 4s infinite ease-in-out;
-            pointer-events: none;
-            z-index: 2;
-        }
-
-        @keyframes shine-sweep {
-            0% {
-                left: -150%;
-            }
-
-            50% {
-                left: 150%;
-            }
-
-            100% {
-                left: 150%;
-            }
         }
     </style>
     <!-- Auth Check -->
@@ -470,8 +384,7 @@
                 </div>
                 <div class="profile-menu-item glass-panel ripple-card" id="adminMenuBtn"
                     onclick="window.location.href='admin.html'">
-                    <div class="profile-menu-icon"
-                        style="background: rgba(255,255,255,0.2); color: white; box-shadow: 0 0 15px rgba(255,255,255,0.3);">
+                    <div class="profile-menu-icon" style="background: rgba(67,56,202,0.15); color: #4338ca;">
                         <i class="fa-solid fa-shield-halved"></i>
                     </div>
                     <div class="profile-menu-text">
