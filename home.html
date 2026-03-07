@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* Final Fix for Admin Button Expansion (Stable) */
+        /* Refined Stable Admin Button */
         #adminMenuBtn {
             position: relative;
             overflow: hidden !important;
@@ -25,19 +25,12 @@
             width: 100% !important;
             box-sizing: border-box !important;
             display: none;
-            /* Controlled by JS */
             align-items: center;
             padding: 16px;
             border-radius: 16px;
             cursor: pointer;
-            margin-bottom: 12px;
 
-            /* Premium Background (Combined: Gradient + Mesh Pattern) */
-            background:
-                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(135deg, #4338ca 0%, #6366f1 100%);
-            background-size: 10px 10px, 10px 10px, 100% 100%;
+            background: linear-gradient(135deg, #4338ca 0%, #6366f1 100%);
             border: 1px solid rgba(255, 255, 255, 0.3);
             box-shadow: 0 8px 25px rgba(67, 56, 202, 0.4);
 
@@ -49,6 +42,53 @@
         #adminMenuBtn:active {
             transform: scale(0.97) !important;
             box-shadow: 0 4px 10px rgba(67, 56, 202, 0.3) !important;
+        }
+
+        /* Sharp Pattern */
+        #adminMenuBtn::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.12) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.12) 1px, transparent 1px);
+            background-size: 10px 10px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* Layout-Safe Shine Sweep */
+        #adminMenuBtn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -150%;
+            width: 80%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transform: skewX(-20deg);
+            animation: shine-sweep 4s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes shine-sweep {
+            0% {
+                left: -150%;
+            }
+
+            50% {
+                left: 150%;
+            }
+
+            100% {
+                left: 150%;
+            }
+        }
+
+        #adminMenuBtn>* {
+            position: relative;
+            z-index: 2;
         }
     </style>
     <!-- Auth Check -->
