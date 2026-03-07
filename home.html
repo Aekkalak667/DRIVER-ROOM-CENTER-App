@@ -20,7 +20,7 @@
             position: relative;
             display: none;
             align-items: center;
-            padding: 16px;
+            padding: 0 16px !important;
             border-radius: 16px;
             cursor: pointer;
 
@@ -30,8 +30,6 @@
             flex: none !important;
             box-sizing: border-box !important;
             overflow: hidden !important;
-            gap: 14px !important;
-            /* Force standard gap */
 
             background: linear-gradient(135deg, #4338ca 0%, #6366f1 100%);
             border: 1px solid rgba(255, 255, 255, 0.3);
@@ -52,22 +50,48 @@
             transform: scale(0.97) !important;
         }
 
+        /* Content Layering */
+        #adminMenuBtn>* {
+            position: relative;
+            z-index: 5 !important;
+        }
+
+        #adminMenuBtn .profile-menu-icon {
+            flex-shrink: 0;
+        }
+
         #adminMenuBtn .profile-menu-text {
-            flex: 1 !important;
-            min-width: 0 !important;
-            /* Critical flex fix for overlap */
+            flex: 1 1 auto !important;
+            min-width: 1px !important;
+            margin: 0 14px !important;
             overflow: hidden;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            text-align: left;
         }
 
-        #adminMenuBtn .profile-menu-text h4,
-        #adminMenuBtn .profile-menu-text p {
+        #adminMenuBtn .profile-menu-text h4 {
+            color: #ffffff !important;
             white-space: nowrap !important;
             overflow: hidden !important;
             text-overflow: ellipsis !important;
             margin: 0 !important;
+            width: 100%;
+        }
+
+        #adminMenuBtn .profile-menu-text p {
+            color: rgba(255, 255, 255, 0.8) !important;
+            white-space: nowrap !important;
+            overflow: hidden !important;
+            text-overflow: ellipsis !important;
+            margin: 0 !important;
+            width: 100%;
+        }
+
+        #adminMenuBtn .profile-menu-arrow {
+            margin-left: auto !important;
+            flex-shrink: 0;
         }
 
         /* Sharp Pattern */
@@ -110,11 +134,6 @@
             100% {
                 left: 150%;
             }
-        }
-
-        #adminMenuBtn>* {
-            position: relative;
-            z-index: 2;
         }
     </style>
     <!-- Auth Check -->
