@@ -18,19 +18,12 @@
     <style>
         #adminMenuBtn {
             position: relative;
-            /* Flex properties (active when shown via JS) */
             display: none;
-            align-items: center !important;
-            gap: 14px !important;
-            padding: 16px !important;
-
-            /* Rigid Lock */
+            /* Height lock to avoid blowout */
             height: 80px !important;
             width: 100% !important;
             flex: none !important;
-            box-sizing: border-box !important;
             overflow: hidden !important;
-            border-radius: 16px;
             cursor: pointer;
 
             /* Admin Premium Styling */
@@ -38,52 +31,38 @@
             border: 1px solid rgba(255, 255, 255, 0.3) !important;
             box-shadow: 0 8px 25px rgba(67, 56, 202, 0.4) !important;
 
-            transition: all 0.3s ease !important;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
         }
 
-        #adminMenuBtn:active {
-            transform: scale(0.97) !important;
-        }
-
-        /* Ensure content stays above patterns and is correctly aligned */
+        /* Ensure content stays above effects and doesn't collapse */
         #adminMenuBtn>* {
             position: relative;
             z-index: 5 !important;
         }
 
         #adminMenuBtn .profile-menu-text {
+            color: white !important;
             flex: 1 !important;
-            min-width: 0 !important;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            overflow: hidden;
-            text-align: left;
+            /* Ensure it grows and pushes the arrow */
         }
 
-        /* Color overrides */
         #adminMenuBtn .profile-menu-text h4 {
             color: white !important;
             margin: 0 !important;
-            white-space: nowrap !important;
-            overflow: hidden !important;
-            text-overflow: ellipsis !important;
         }
 
         #adminMenuBtn .profile-menu-text p {
             color: rgba(255, 255, 255, 0.8) !important;
             margin: 0 !important;
-            white-space: nowrap !important;
-            overflow: hidden !important;
-            text-overflow: ellipsis !important;
         }
 
         #adminMenuBtn .profile-menu-arrow {
             color: rgba(255, 255, 255, 0.7) !important;
-            margin-left: auto !important;
-            /* Force to right side like others */
+        }
+
+        #adminMenuBtn:active {
+            transform: scale(0.97) !important;
         }
 
         /* Premium effects (Safe for layout) */
@@ -110,7 +89,7 @@
             transform: skewX(-20deg);
             animation: shine-sweep 4s infinite ease-in-out;
             pointer-events: none;
-            z-index: 1;
+            z-index: 2;
         }
 
         @keyframes shine-sweep {
