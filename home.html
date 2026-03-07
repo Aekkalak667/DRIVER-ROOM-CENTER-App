@@ -60,6 +60,11 @@
             margin: 0 !important;
         }
 
+        #adminMenuBtn:hover {
+            transform: translateX(4px) scale(1.01) !important;
+            box-shadow: 0 12px 30px rgba(67, 56, 202, 0.5) !important;
+        }
+
         #adminMenuBtn:active {
             transform: scale(0.97) !important;
             box-shadow: 0 4px 10px rgba(67, 56, 202, 0.3) !important;
@@ -474,7 +479,8 @@
                     </div>
                     <i class="fa-solid fa-chevron-right profile-menu-arrow"></i>
                 </div>
-                <div class="profile-menu-item" id="adminMenuBtn" onclick="window.location.href='admin.html'">
+                <div class="profile-menu-item ripple-card" id="adminMenuBtn"
+                    onclick="window.location.href='admin.html'">
                     <div class="profile-menu-icon"
                         style="background: rgba(255,255,255,0.2); color: white; box-shadow: 0 0 15px rgba(255,255,255,0.3);">
                         <i class="fa-solid fa-shield-halved"></i>
