@@ -433,15 +433,15 @@ async function loadEmployees() {
             div.className = 'employee-item';
             div.style = 'display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: white; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); border: 1px solid #e2e8f0; margin-bottom: 6px;';
             div.innerHTML = `
-                <div style="display: flex; align-items: center; gap: 12px;">
-                    <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--bg-base); display: flex; align-items: center; justify-content: center; color: var(--primary); font-family: 'Outfit', sans-serif; font-weight: 700;">
-                        ${data.empId}
+                <div style="display: flex; align-items: center; gap: 16px; flex: 1;">
+                    <div style="width: auto; height: 36px; padding: 0 12px; border-radius: 8px; background: rgba(79, 70, 229, 0.1); display: flex; align-items: center; justify-content: center; color: var(--primary); font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 0.9rem; letter-spacing: 0.5px;">
+                        # ${data.empId}
                     </div>
-                    <div>
-                        <h5 style="margin: 0; font-family: 'Prompt', sans-serif; font-size: 0.95rem; color: var(--text-main);">${data.name}</h5>
+                    <div style="flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+                        <h5 style="margin: 0; font-family: 'Prompt', sans-serif; font-size: 1rem; color: var(--text-main); font-weight: 500;">${data.name}</h5>
                     </div>
                 </div>
-                <button type="button" onclick="deleteEmployee('${id}')" style="background: rgba(239, 68, 68, 0.1); color: #ef4444; border: none; width: 36px; height: 36px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">
+                <button type="button" onclick="deleteEmployee('${id}')" style="background: rgba(239, 68, 68, 0.1); color: #ef4444; border: none; width: 36px; height: 36px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; flex-shrink: 0; margin-left: 12px;">
                     <i class="fa-solid fa-trash-can"></i>
                 </button>
             `;
