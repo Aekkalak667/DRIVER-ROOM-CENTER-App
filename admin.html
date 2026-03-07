@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin System - Driver Room Center</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Prompt:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8fafc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="bg-shapes">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+        <div class="shape shape-3"></div>
+    </div>
+
+    <div class="app-container" style="padding-bottom: 40px;"> <!-- No bottom nav -->
+        <!-- Header -->
+        <header class="header scale-in"
+            style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px;">
+            <div style="display: flex; align-items: center; gap: 16px;">
+                <button onclick="window.location.href='index.html'" class="ripple-btn glass-panel"
+                    style="border: none; width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: var(--text-main); cursor: pointer;">
+                    <i class="fa-solid fa-arrow-left"></i>
+                </button>
+                <div>
+                    <h2
+                        style="font-family: 'Prompt', sans-serif; font-size: 1.25rem; margin: 0; color: var(--text-main); font-weight: 700;">
+                        ระบบหลังบ้าน</h2>
+                    <p style="margin: 0; font-size: 0.8rem; color: var(--text-muted);">Admin System</p>
+                </div>
+            </div>
+            <div
+                style="width: 44px; height: 44px; border-radius: 12px; background: rgba(59,130,246,0.1); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.25rem;">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+        </header>
+
+        <section class="page-section active fade-in-up" style="display: block;">
+
+            <!-- Tab Navigation -->
+            <div
+                style="display: flex; gap: 8px; margin-bottom: 24px; background: rgba(255,255,255,0.6); backdrop-filter: blur(10px); padding: 6px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.8);">
+                <button
+                    style="flex: 1; padding: 14px; border-radius: 12px; border: none; background: var(--primary); color: white; font-family: 'Prompt', sans-serif; font-weight: 600; box-shadow: 0 4px 12px rgba(79, 70, 229, 0.3);">จัดการพนักงาน</button>
+                <button
+                    style="flex: 1; padding: 14px; border-radius: 12px; border: none; background: transparent; color: var(--text-muted); font-family: 'Prompt', sans-serif; font-weight: 500;"
+                    onclick="alert('ฟีเจอร์นี้กำลังพัฒนา')">ตั้งค่าอื่นๆ</button>
+            </div>
+
+            <!-- Add Employee Card -->
+            <div class="glass-panel"
+                style="padding: 24px; border-radius: 20px; margin-bottom: 30px; position: relative; overflow: hidden;">
+                <!-- Decorative element -->
+                <div
+                    style="position: absolute; top: -20px; right: -20px; font-size: 100px; color: rgba(79, 70, 229, 0.05); transform: rotate(-15deg); pointer-events: none;">
+                    <i class="fa-solid fa-user-plus"></i>
+                </div>
+
+                <h3
+                    style="margin-bottom: 20px; display: flex; align-items: center; gap: 10px; color: var(--text-main); font-family: 'Prompt', sans-serif;">
+                    <div
+                        style="width: 36px; height: 36px; border-radius: 10px; background: rgba(79,70,229,0.1); color: var(--primary); display: flex; align-items: center; justify-content: center;">
+                        <i class="fa-solid fa-plus"></i>
+                    </div>
+                    เพิ่มพนักงานใหม่
+                </h3>
+
+                <div class="form-group">
+                    <label>รหัสพนักงาน (ID)</label>
+                    <div class="input-icon-wrapper">
+                        <i class="fa-solid fa-hashtag input-icon"></i>
+                        <input type="text" id="admin_emp_id" class="form-control" placeholder="เช่น 00123" required
+                            style="padding: 14px 14px 14px 44px; border-radius: 12px;">
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 16px;">
+                    <label>ชื่อ-นามสกุล / ชื่อเล่น</label>
+                    <div class="input-icon-wrapper">
+                        <i class="fa-regular fa-id-card input-icon"></i>
+                        <input type="text" id="admin_emp_name" class="form-control" placeholder="ระบุชื่อพนักงาน"
+                            required style="padding: 14px 14px 14px 44px; border-radius: 12px;">
+                    </div>
+                </div>
+
+                <button type="button" class="btn-submit ripple-btn" onclick="submitNewEmployee()"
+                    style="margin-top: 24px; padding: 16px; border-radius: 14px; font-size: 1.05rem;">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> บันทึกข้อมูลขึ้นระบบ
+                </button>
+            </div>
+
+            <!-- Employee List Card -->
+            <div>
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 16px;">
+                    <h3 style="margin: 0; color: var(--text-main); font-family: 'Prompt', sans-serif;">รายชื่อทั้งหมด
+                    </h3>
+                    <div class="badge-new" id="emp_count"
+                        style="background: var(--primary); color: white; padding: 6px 12px; border-radius: 20px;">0 คน
+                    </div>
+                </div>
+
+                <!-- Search bar -->
+                <div class="input-icon-wrapper" style="margin-bottom: 20px;">
+                    <i class="fa-solid fa-search input-icon" style="color: var(--text-muted);"></i>
+                    <input type="text" class="form-control glass-panel" placeholder="ค้นหาชื่อ หรือ รหัสพนักงาน..."
+                        style="padding: 14px 14px 14px 44px; border-radius: 14px; border: none; font-size: 0.95rem; box-shadow: 0 4px 12px rgba(0,0,0,0.03);"
+                        onkeyup="filterEmployees(this.value)">
+                </div>
+
+                <div id="employeeListContainer"
+                    style="display: flex; flex-direction: column; gap: 12px; padding-bottom: 20px;">
+                    <!-- Loading State -->
+                    <div
+                        style="text-align: center; padding: 40px 0; color: var(--text-muted); background: white; border-radius: 16px; border: 1px dashed #cbd5e1;">
+                        <i class="fa-solid fa-circle-notch fa-spin fa-2x"
+                            style="color: var(--primary); margin-bottom: 12px;"></i>
+                        <br>กำลังดึงข้อมูลจาก Cloud...
+                    </div>
+                </div>
+            </div>
+
+        </section>
+    </div>
+
+    <!-- Firebase SDK & Config -->
+    <script type="module" src="js/firebase-config.js"></script>
+    <script type="module" src="js/script.js"></script>
+    <script>
+        // Start loading employees automatically
+        window.onload = function () {
+            setTimeout(() => {
+                if (typeof window.loadEmployees === 'function') {
+                    window.loadEmployees();
+                } else {
+                    console.warn("loadEmployees not found on window");
+                }
+            }, 500);
+        };
+
+        // Basic UI filter implementation
+        function filterEmployees(term) {
+            term = term.toLowerCase();
+            const items = document.querySelectorAll('.employee-item');
+
+            items.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(term)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>
