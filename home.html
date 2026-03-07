@@ -15,6 +15,56 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <style>
+        /* Admin Premium Button Patterns */
+        #adminMenuBtn {
+            position: relative;
+            overflow: hidden !important;
+        }
+
+        #adminMenuBtn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 10px 10px;
+            opacity: 1;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        #adminMenuBtn::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 45%, rgba(255, 255, 255, 0.1) 50%, transparent 55%);
+            animation: shine 6s infinite linear;
+            pointer-events: none;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) translateY(-100%);
+            }
+
+            100% {
+                transform: translateX(100%) translateY(100%);
+            }
+        }
+
+        #adminMenuBtn>* {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
     <!-- Auth Check -->
     <script>
         if (!localStorage.getItem('driver_app_user')) {
