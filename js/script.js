@@ -351,3 +351,17 @@ function switchToPage(targetPage) {
 
     currentPage = targetPage;
 }
+
+// Expose functions to window for HTML onclick access (since this is now a module)
+window.selectMenu = selectMenu;
+window.openForm = openForm;
+window.closeForm = closeForm;
+window.submitForm = submitForm;
+window.switchNav = switchNav;
+window.switchToPage = switchToPage;
+window.calculateEvDuration = calculateEvDuration;
+window.showStationDetails = showStationDetails;
+window.initTiltEffect = initTiltEffect;
+window.setupRippleEffects = setupRippleEffects;
+window.updateIndicator = updateIndicator;
+window.currentPage = currentPage;
