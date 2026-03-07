@@ -1,0 +1,88 @@
+<div class="mockup-form">
+    <!-- Tab Navigation for Admin Options -->
+    <div
+        style="display: flex; gap: 8px; margin-bottom: 16px; background: rgba(0,0,0,0.05); padding: 4px; border-radius: 12px;">
+        <button class="nav-item active"
+            style="flex: 1; padding: 12px; border-radius: 8px; border: none; background: white; font-family: 'Prompt', sans-serif; font-weight: 600; box-shadow: 0 2px 8px rgba(0,0,0,0.05); color: var(--primary);">รายชื่อพนักงาน</button>
+        <button class="nav-item"
+            style="flex: 1; padding: 12px; border-radius: 8px; border: none; background: transparent; font-family: 'Prompt', sans-serif; font-weight: 500; color: var(--text-muted);"
+            onclick="alert('ฟีเจอร์กำลังพัฒนา')">ตั้งค่าอื่นๆ</button>
+    </div>
+
+    <!-- Add New Employee Form -->
+    <div class="glass-panel"
+        style="padding: 16px; border-radius: 16px; margin-bottom: 20px; border: 1px dashed var(--primary);">
+        <h4 style="margin-bottom: 16px; display: flex; align-items: center; gap: 8px; color: var(--text-main);">
+            <i class="fa-solid fa-user-plus" style="color: var(--primary);"></i> เพิ่มพนักงานใหม่
+        </h4>
+        <div class="form-group">
+            <label>รหัสพนักงาน</label>
+            <div class="input-icon-wrapper">
+                <i class="fa-solid fa-hashtag input-icon"></i>
+                <input type="text" id="admin_emp_id" class="form-control" placeholder="ระบุรหัสประจำตัว" required>
+            </div>
+        </div>
+        <div class="form-group" style="margin-top: 12px;">
+            <label>ชื่อ-นามสกุล / ชื่อเล่น</label>
+            <div class="input-icon-wrapper">
+                <i class="fa-solid fa-id-badge input-icon"></i>
+                <input type="text" id="admin_emp_name" class="form-control" placeholder="ระบุชื่อพนักงาน" required>
+            </div>
+        </div>
+        <button type="button" class="btn-submit" onclick="submitNewEmployee()"
+            style="margin-top: 16px; padding: 14px; font-size: 1rem;">
+            <i class="fa-solid fa-save"></i> บันทึกข้อมูล
+        </button>
+    </div>
+
+    <!-- Employee List Container -->
+    <div class="form-group">
+        <label
+            style="display: flex;justify-content: space-between; align-items: center; border-bottom: 2px solid #e2e8f0; padding-bottom: 8px; margin-bottom: 12px;">
+            <span>รายชื่อพนักงานทั้งหมด</span>
+            <span class="badge-new" id="emp_count" style="background: var(--text-muted);">0 คน</span>
+        </label>
+
+        <!-- Search bar -->
+        <div class="input-icon-wrapper" style="margin-bottom: 16px;">
+            <i class="fa-solid fa-search input-icon" style="color: var(--text-muted);"></i>
+            <input type="text" class="form-control" placeholder="ค้นหาชื่อ หรือ รหัสพนักงาน..."
+                style="padding: 12px 12px 12px 40px; border-radius: 12px; font-size: 0.9rem;"
+                onkeyup="filterEmployees(this.value)">
+        </div>
+
+        <div id="employeeListContainer"
+            style="display: flex; flex-direction: column; gap: 12px; max-height: 300px; overflow-y: auto; padding-right: 4px;">
+            <!-- Loading State -->
+            <div style="text-align: center; padding: 20px 0; color: var(--text-muted);">
+                <i class="fa-solid fa-circle-notch fa-spin"></i> กำลังโหลดข้อมูล...
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // This script will be executed when the form is loaded into the overlay
+    setTimeout(() => {
+        if (typeof window.loadEmployees === 'function') {
+            window.loadEmployees();
+        }
+    }, 100);
+
+    // Basic UI filter implementation
+    function filterEmployees(term) {
+        term = term.toLowerCase();
+        const items = document.querySelectorAll('.employee-item');
+        let visibleCount = 0;
+
+        items.forEach(item => {
+            const text = item.textContent.toLowerCase();
+            if (text.includes(term)) {
+                item.style.display = 'flex';
+                visibleCount++;
+            } else {
+                item.style.display = 'none';
+            }
+        });
+    }
+</script>

@@ -352,6 +352,122 @@ function switchToPage(targetPage) {
     currentPage = targetPage;
 }
 
+import { db } from './firebase-config.js';
+import { collection, addDoc, getDocs, deleteDoc, doc, serverTimestamp, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
+// ============================================
+// Employee Management (Admin)
+// ============================================
+
+// Add a new employee to Firestore
+async function submitNewEmployee() {
+    const empId = document.getElementById('admin_emp_id').value.trim();
+    const empName = document.getElementById('admin_emp_name').value.trim();
+
+    if (!empId || !empName) {
+        alert("กรุณากรอกรหัสพนักงานและชื่อให้ครบถ้วน");
+        return;
+    }
+
+    try {
+        const btn = document.querySelector('.btn-submit');
+        const origBtnText = btn.innerHTML;
+        btn.innerHTML = '<i class="fa-solid fa-circle-notch fa-spin"></i> กำลังบันทึก...';
+        btn.disabled = true;
+
+        await addDoc(collection(db, "employees"), {
+            empId: empId,
+            name: empName,
+            createdAt: serverTimestamp()
+        });
+
+        // Reset form
+        document.getElementById('admin_emp_id').value = '';
+        document.getElementById('admin_emp_name').value = '';
+
+        // Reload list
+        await loadEmployees();
+
+        btn.innerHTML = '<i class="fa-solid fa-check-circle"></i> บันทึกสำเร็จ';
+        btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+
+        setTimeout(() => {
+            btn.innerHTML = origBtnText;
+            btn.style.background = '';
+            btn.disabled = false;
+        }, 1500);
+
+    } catch (e) {
+        console.error("Error adding document: ", e);
+        alert("เกิดข้อผิดพลาดในการบันทึกข้อมูล");
+    }
+}
+
+// Load employees from Firestore
+async function loadEmployees() {
+    const listContainer = document.getElementById('employeeListContainer');
+    const countBadge = document.getElementById('emp_count');
+
+    if (!listContainer) return;
+
+    listContainer.innerHTML = '<div style="text-align: center; padding: 20px 0; color: var(--text-muted);"><i class="fa-solid fa-circle-notch fa-spin"></i> กำลังโหลดข้อมูล...</div>';
+
+    try {
+        const q = query(collection(db, "employees"), orderBy("createdAt", "desc"));
+        const querySnapshot = await getDocs(q);
+
+        listContainer.innerHTML = ''; // Clear loading
+        let count = 0;
+
+        querySnapshot.forEach((docSnap) => {
+            count++;
+            const data = docSnap.data();
+            const id = docSnap.id;
+
+            const div = document.createElement('div');
+            div.className = 'employee-item';
+            div.style = 'display: flex; justify-content: space-between; align-items: center; padding: 12px 16px; background: white; border-radius: 12px; box-shadow: 0 2px 5px rgba(0,0,0,0.02); border: 1px solid #e2e8f0; margin-bottom: 6px;';
+            div.innerHTML = `
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--bg-base); display: flex; align-items: center; justify-content: center; color: var(--primary); font-family: 'Outfit', sans-serif; font-weight: 700;">
+                        ${data.empId}
+                    </div>
+                    <div>
+                        <h5 style="margin: 0; font-family: 'Prompt', sans-serif; font-size: 0.95rem; color: var(--text-main);">${data.name}</h5>
+                    </div>
+                </div>
+                <button type="button" onclick="deleteEmployee('${id}')" style="background: rgba(239, 68, 68, 0.1); color: #ef4444; border: none; width: 36px; height: 36px; border-radius: 10px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">
+                    <i class="fa-solid fa-trash-can"></i>
+                </button>
+            `;
+            listContainer.appendChild(div);
+        });
+
+        countBadge.textContent = `${count} คน`;
+
+        if (count === 0) {
+            listContainer.innerHTML = '<div style="text-align: center; padding: 20px 0; color: var(--text-muted);">ยังไม่มีข้อมูลพนักงาน</div>';
+        }
+
+    } catch (e) {
+        console.error("Error loading documents: ", e);
+        listContainer.innerHTML = '<div style="text-align: center; padding: 20px 0; color: #ef4444;"><i class="fa-solid fa-triangle-exclamation"></i> ไม่สามารถโหลดข้อมูลได้</div>';
+    }
+}
+
+// Delete an employee from Firestore
+async function deleteEmployee(docId) {
+    if (confirm('คุณต้องการลบข้อมูลพนักงานคนนี้ใช่หรือไม่?')) {
+        try {
+            await deleteDoc(doc(db, "employees", docId));
+            await loadEmployees(); // Reload list after delete
+        } catch (e) {
+            console.error("Error deleting document: ", e);
+            alert("เกิดข้อผิดพลาดในการลบข้อมูล");
+        }
+    }
+}
+
 // Expose functions to window for HTML onclick access (since this is now a module)
 window.selectMenu = selectMenu;
 window.openForm = openForm;
@@ -365,3 +481,8 @@ window.initTiltEffect = initTiltEffect;
 window.setupRippleEffects = setupRippleEffects;
 window.updateIndicator = updateIndicator;
 window.currentPage = currentPage;
+
+// Admin functions
+window.submitNewEmployee = submitNewEmployee;
+window.loadEmployees = loadEmployees;
+window.deleteEmployee = deleteEmployee;
