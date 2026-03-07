@@ -18,83 +18,75 @@
     <style>
         #adminMenuBtn {
             position: relative;
+            /* Flex properties (active when shown via JS) */
             display: none;
-            align-items: center;
-            padding: 0 16px !important;
-            border-radius: 16px;
-            cursor: pointer;
+            align-items: center !important;
+            gap: 14px !important;
+            padding: 16px !important;
 
-            /* Rigid Lock - Match Standard but fixed height to avoid blowout */
+            /* Rigid Lock */
             height: 80px !important;
             width: 100% !important;
             flex: none !important;
             box-sizing: border-box !important;
             overflow: hidden !important;
+            border-radius: 16px;
+            cursor: pointer;
 
-            background: linear-gradient(135deg, #4338ca 0%, #6366f1 100%);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            box-shadow: 0 8px 25px rgba(67, 56, 202, 0.4);
+            /* Admin Premium Styling */
+            background: linear-gradient(135deg, #4338ca 0%, #6366f1 100%) !important;
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+            box-shadow: 0 8px 25px rgba(67, 56, 202, 0.4) !important;
 
-            /* Standard Interaction */
             transition: all 0.3s ease !important;
             user-select: none;
             -webkit-tap-highlight-color: transparent;
-        }
-
-        #adminMenuBtn:hover {
-            transform: translateX(4px) !important;
-            box-shadow: 0 10px 30px rgba(67, 56, 202, 0.5) !important;
         }
 
         #adminMenuBtn:active {
             transform: scale(0.97) !important;
         }
 
-        /* Content Layering */
+        /* Ensure content stays above patterns and is correctly aligned */
         #adminMenuBtn>* {
             position: relative;
             z-index: 5 !important;
         }
 
-        #adminMenuBtn .profile-menu-icon {
-            flex-shrink: 0;
-        }
-
         #adminMenuBtn .profile-menu-text {
-            flex: 1 1 auto !important;
-            min-width: 1px !important;
-            margin: 0 14px !important;
-            overflow: hidden;
+            flex: 1 !important;
+            min-width: 0 !important;
             display: flex;
             flex-direction: column;
             justify-content: center;
+            overflow: hidden;
             text-align: left;
         }
 
+        /* Color overrides */
         #adminMenuBtn .profile-menu-text h4 {
-            color: #ffffff !important;
+            color: white !important;
+            margin: 0 !important;
             white-space: nowrap !important;
             overflow: hidden !important;
             text-overflow: ellipsis !important;
-            margin: 0 !important;
-            width: 100%;
         }
 
         #adminMenuBtn .profile-menu-text p {
             color: rgba(255, 255, 255, 0.8) !important;
+            margin: 0 !important;
             white-space: nowrap !important;
             overflow: hidden !important;
             text-overflow: ellipsis !important;
-            margin: 0 !important;
-            width: 100%;
         }
 
         #adminMenuBtn .profile-menu-arrow {
+            color: rgba(255, 255, 255, 0.7) !important;
             margin-left: auto !important;
-            flex-shrink: 0;
+            /* Force to right side like others */
         }
 
-        /* Sharp Pattern */
+        /* Premium effects (Safe for layout) */
         #adminMenuBtn::before {
             content: '';
             position: absolute;
@@ -107,7 +99,6 @@
             z-index: 1;
         }
 
-        /* Layout-Safe Shine Sweep */
         #adminMenuBtn::after {
             content: '';
             position: absolute;
@@ -498,17 +489,17 @@
                     </div>
                     <i class="fa-solid fa-chevron-right profile-menu-arrow"></i>
                 </div>
-                <div class="profile-menu-item ripple-card" id="adminMenuBtn"
+                <div class="profile-menu-item glass-panel ripple-card" id="adminMenuBtn"
                     onclick="window.location.href='admin.html'">
                     <div class="profile-menu-icon"
                         style="background: rgba(255,255,255,0.2); color: white; box-shadow: 0 0 15px rgba(255,255,255,0.3);">
                         <i class="fa-solid fa-shield-halved"></i>
                     </div>
                     <div class="profile-menu-text">
-                        <h4 style="color: white; text-shadow: 0 1px 4px rgba(0,0,0,0.2);">Admin System</h4>
-                        <p style="color: rgba(255,255,255,0.8);">ระบบจัดการหลังบ้าน</p>
+                        <h4>Admin System</h4>
+                        <p>ระบบจัดการหลังบ้าน</p>
                     </div>
-                    <i class="fa-solid fa-chevron-right profile-menu-arrow" style="color: rgba(255,255,255,0.7);"></i>
+                    <i class="fa-solid fa-chevron-right profile-menu-arrow"></i>
                 </div>
                 <!-- /Admin Placeholder -->
 
