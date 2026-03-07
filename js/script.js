@@ -3,7 +3,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const dateElement = document.getElementById('currentDate');
     const today = new Date();
     const options = { year: 'numeric', month: 'short', day: 'numeric', timeZone: 'Asia/Bangkok' };
-    dateElement.textContent = today.toLocaleDateString('th-TH', options);
+    if (dateElement) {
+        dateElement.textContent = today.toLocaleDateString('th-TH', options);
+    }
 
     // 2. Set mock date in form
     const mockDate = document.getElementById('mockDate');
@@ -81,11 +83,14 @@ function closeForm() {
 }
 
 // Close drawer when clicking outside
-document.getElementById('formOverlay').addEventListener('click', function (e) {
-    if (e.target === this) {
-        closeForm();
-    }
-});
+const formOverlay = document.getElementById('formOverlay');
+if (formOverlay) {
+    formOverlay.addEventListener('click', function (e) {
+        if (e.target === this) {
+            closeForm();
+        }
+    });
+}
 
 // Simulate Form Submission
 function submitForm() {
